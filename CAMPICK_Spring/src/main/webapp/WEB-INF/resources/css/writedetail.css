@@ -1,0 +1,317 @@
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {/*감성쩔*/
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face { /*에스코어 드림*/
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face { /*나눔*/
+    font-family: 'NanumBarunGothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+   }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    list-style:none;
+    text-decoration:none;
+}
+
+body{
+    background-color:#ebebeb;
+}
+#conatiner{ /*전체 구조*/
+    margin:0 auto;
+    width: 100%;
+    height:100%;
+}
+/* 헤더 */
+header{
+    width:100%;
+    height:200px;
+    background-color:#375959;
+}
+#logo{
+    float:left;
+    width:250px;
+    height:100px;
+    line-height:70px;
+    padding:20px;   
+}
+#logo h1{
+    font-family: 'yg-jalnan';
+    font-weight:100;
+    font-size:50px;
+    color:#fff;
+    text-shadow:0 -1px 0 #222;
+}
+#inform{
+    float:right;
+    width:600px;
+    height:100px;
+    padding-right:10px;
+    font-size:18px;
+    font-family: 'S-CoreDream-3Light';
+}
+#inform > ul>li{
+    float: right;
+    padding:15px;
+    margin-right:20px;
+    font-weight:600;
+}
+
+#inform> ul>li> a{
+    display:block;
+    color:white;
+}
+#inform> ul>li> a:hover{
+    color:#07c;
+}
+
+nav{
+    font-size:18px;
+    clear:both;
+    width:100%;
+    height:80px;
+    overflow:hidden;
+    padding:50px;
+    background-color:#375959;
+    font-family: 'S-CoreDream-3Light';
+}
+
+
+#topMenu > li{
+    float : left;
+    margin-right:50px;
+    margin-top:-20px;
+}
+
+#topMenu > li > a{
+    display:block;
+    color:white;
+    font-weight:600;
+}
+
+#topMenu > li > a:hover{
+    color:#D1433A; /*마우스 포인터 올리면 바뀌는 색*/
+}
+/* 바디 정보 */
+#content{
+    width: 800px;
+    margin: 0 auto;
+    border: 1px solid black;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 50px;
+    background-color: white;
+    position: relative;
+}
+#writeinfo{
+    width: 100%;
+    height: 180px;
+    position: relative;
+}
+#writeinfo table,#writeinfo td{
+    /* border: 1px solid black; */
+    border-collapse: collapse;
+}
+#writeinfo td{
+    /* width: 35px; */
+    height: 43px;
+    border: 1px solid black;
+}
+#writeinfo table{
+    width: 560px;
+    text-align: center;
+    margin-bottom: 20px;
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%); */
+}
+#writeinfo #writer{
+    font-size: 14px;
+    position: absolute;
+    right: 15%;
+    bottom: 3%;
+    font-family: 'GangwonEdu_OTFBoldA';
+    color: rgb(110, 110, 110);
+}
+.title{
+    background-color: #375959;
+    color: white;
+    width: 50px;
+    font-family: 'S-CoreDream-3Light';
+}
+#table1{
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%,-50%);
+    font-size: 12px;
+}
+#table1 td{
+    height: 30px;
+    width: 20px;
+}
+#table2{
+    font-size: 14px;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%,-50%);
+}
+hr{
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+#writecontents{
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    height: 600px;
+}
+#writecontents>img{
+	margin: auto;
+    display: block;
+}
+#writecontents>p{
+	text-align: center;
+}
+#writecontents>#dat{
+    position: absolute;
+    left: 9%;
+    top: 95%
+}
+button:not(.reComment){
+    background-color: #375959;
+    color: white;
+    width: 60px;
+    height: 35px;
+    border: none;
+    font-family: 'S-CoreDream-3Light';
+}
+#goList{
+    position: absolute;
+    right: 80px;
+    bottom: 70px;
+}
+#w_remove{
+    position: absolute;
+    right: 145px;
+    bottom: 70px;
+}
+#w_edit{
+    position: absolute;
+    right: 210px;
+    bottom: 70px;
+}
+#w_good{
+    position: absolute;
+    left: 70px;
+    bottom: 70px;
+}
+#datgle{
+    position: relative;
+    width: 100%;
+}
+#datgle table{
+	margin-left:auto; 
+    margin-right:auto;
+    margin-bottom:20px;
+    width: 90%;
+    height:100px;
+}
+.tablefont{
+	font-size : 10px;
+}
+#datgle table, #datgle td{
+    border-collapse: collapse;
+
+}
+#datgle>form>input{
+    position: absolute;
+    width: 550px;
+    left: 90px;
+    height: 35px;
+    font-size: 14px;
+}
+#datgle>form>button{
+    position: absolute;
+    right: 85px;
+}
+.ganguk{
+	padding-left: 10px;
+}
+#insertComment{
+	text-align:center;
+	position: relative;
+	margin-bottom: 20px;
+}
+#insertComment table{
+	
+	margin-left:auto; 
+    margin-right:auto;
+    width:90%;
+}
+#insertComment table,#insertComment td{
+	border-collapse:collapse;
+}
+#insertComment textarea{
+	width:100%;
+	height:100%;
+	border: 1px solid black;
+	border-radius: 5px;
+	font-size:14px;
+	resize: none;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+.insertReComment{
+	text-align:center;
+	position: relative;
+	margin-bottom: 20px;
+	display:none;
+}
+.insertReComment table{
+	margin-left:auto; 
+    margin-right:auto;
+    width:90%;
+    height: 50px;
+}
+.insertReComment table,#insertComment td{
+	border-collapse:collapse;
+}
+.insertReComment textarea{
+	width:100%;
+	font-size:14px;
+	resize: none;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+.reComment {
+	witdh:100%;
+	height:100%;
+	background: none;
+	border: none;
+	font-size:10px;
+}
+.reComment:hover {
+	text-shadow: 0.3px -0.3px black;
+}
+
+

@@ -1,0 +1,149 @@
+@font-face { /*여기어때*/
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {/*감성쩔*/ /*소글씨*/
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face { /*에스코어 드림*/ /*제목같은거*/
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face { /*나눔*/
+    font-family: 'NanumBarunGothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+   }
+   * {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none
+}
+#popupform{
+    width: 600px;
+    margin: 0 auto;
+    /* background-color: #ebebeb; */
+    font-size: 13px;
+    position: relative;
+}
+#popupform ul{
+    margin: 15px 0px;
+    width: 100%;
+    border: 1px solid silver;
+    padding: 5px;
+    background-color: white;
+}
+#popupform li{
+    display: inline-block;
+    margin: 3px;
+    padding: 1px;
+    font-family: 'S-CoreDream-3Light';
+}
+#popupform input[type="checkbox"]{
+    accent-color: green;
+    zoom: 0.6;
+}
+#popupform h3{
+    font-family: 'yg-jalnan';
+}
+#popupform h2{
+    margin-top: 20px;
+    font-family: 'yg-jalnan';
+    text-align: left;
+}
+#popupform #buttons{
+    text-align: center;
+}
+#popupform #buttons input{
+    color: #fff;
+    font-size: 15px;
+    background-color: rgb(43, 150, 114);
+    margin-top: 5px;
+    margin-bottom:5px;
+	border: 1px solid silver;
+	padding: 5px 10px;
+    font-family:'Pretendard-Regular';
+    border-radius:6px;
+}
+#popupform > ul > li>input:not([type="checkbox"]){
+    width: 150px;
+    height: 20px;
+    padding: 0 10px;
+    background-color: #eaf3ef;
+    border-radius:6px;
+    border:none;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 13px;
+    text-align: center;
+}
+
+#popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .7);
+    z-index: 1;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    overflow: auto;
+  }
+  
+  #popup.hide {
+    display: none;
+  }
+  
+  #popup.multiple-filter {
+    backdrop-filter: blur(4px) grayscale(90%);
+    -webkit-backdrop-filter: blur(4px) grayscale(90%);
+  }
+  
+  #popup .content {
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .3);
+  }
+  #closebutton{
+    width: 50px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: #fff;
+    font-size: 15px;
+    background-color: rgb(43, 150, 114);
+    margin-top: 5px;
+    margin-bottom:5px;
+	border: 1px solid silver;
+	padding: 5px 10px;
+    font-family:'Pretendard-Regular';
+    border-radius:6px;
+  }
+  #closebutton:hover,#popupform #buttons input:hover{
+    background-color:#222;
+	color:#fff;
+  }
+  .content{
+    position: relative;
+  }

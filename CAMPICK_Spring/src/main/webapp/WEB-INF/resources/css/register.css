@@ -1,0 +1,242 @@
+
+   @font-face {
+       font-family: 'yg-jalnan';
+       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+       font-weight: normal;
+       font-style: normal;
+   }
+   @font-face {/*媛먯꽦姨�*/
+       font-family: 'GangwonEdu_OTFBoldA';
+       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+       font-weight: normal;
+       font-style: normal;
+   }
+   @font-face { /*�뿉�뒪肄붿뼱 �뱶由�*/
+       font-family: 'S-CoreDream-3Light';
+       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+       font-weight: normal;
+       font-style: normal;
+   }
+   @font-face { /*�굹�닎*/
+       font-family: 'NanumBarunGothic';
+       font-style: normal;
+       font-weight: 400;
+       src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+       src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+      }
+   
+   *{
+       margin:0;
+       padding:0;
+       box-sizing:border-box;
+       list-style:none;
+       text-decoration:none;
+   }
+   
+   body{
+       background-color:#ebebeb;
+       background: no-repeat 100%;
+   }
+   
+   
+   #conatiner{ /*�쟾泥� 援ъ“*/
+       margin:0 auto;
+       width: 100%;
+       height:100%;
+   }
+   /* �뿤�뜑 */
+   header{
+       width:100%;
+       height:200px;
+       background-color:#375959;
+   }
+   
+   #logo{
+       float:left;
+       width:250px;
+       height:100px;
+       line-height:70px;
+       padding:20px;
+       
+   }
+   #logo h1{
+       font-family: 'yg-jalnan';
+       font-weight:100;
+       font-size:50px;
+       color:#fff;
+       text-shadow:0 -1px 0 #222;
+   }
+   #inform{
+       float:right;
+       width:300px;
+       height:100px;
+       padding-right:10px;
+       font-size:18px;
+       font-family: 'S-CoreDream-3Light';
+   }
+   #inform > ul>li{
+       float: right;
+       padding:15px;
+       margin-right:20px;
+       font-weight:600;
+   }
+   
+   #inform> ul>li> a{
+       display:block;
+       color:white;
+   }
+   #inform> ul>li> a:hover{
+       color:#07c;
+   }
+   
+   nav{
+       font-size:18px;
+       clear:both;
+       width:100%;
+       height:80px;
+       overflow:hidden;
+       padding:50px;
+       background-color:#375959;
+       font-family: 'S-CoreDream-3Light';
+   }
+   
+   
+   #topMenu > li{
+       float : left;
+       margin-right:50px;
+       margin-top:-10px;
+   }
+   
+   #topMenu > li > a{
+       display:block;
+       color:white;
+       font-weight:600;
+   }
+   
+   #topMenu > li > a:hover{
+       color:#D1433A; /*留덉슦�뒪 �룷�씤�꽣 �삱由щ㈃ 諛붾�뚮뒗 �깋*/
+   }
+/*------------------------------------------------------------------*/
+
+form{
+    text-align: center;
+    width:800px;
+    margin:auto;
+    margin-top:50px;
+
+	background-color:rgba(255, 255, 255, 0.9);/*源뚮쭔�깋(0,0,0) 80% 遺덊닾紐낅룄*/
+    font-family: 'S-CoreDream-3Light';
+}
+
+#registerForm, #favoriteForm{
+    width: 800px;
+    margin: 0 auto;
+    margin-top:50px;    
+}
+
+
+#registerForm h1{
+	font-size:25px;
+    margin-top:60px;
+	color:rgb(43, 150, 114);
+	margin-bottom: 20px;
+    font-family: 'yg-jalnan';
+}
+
+#registerForm fieldset{
+    padding:1px;
+}
+
+#registerForm table{
+    margin:auto;
+    padding:5%;
+    border-collapse:separate;
+    border-spacing: 15px;
+}
+
+#registerForm td, tr{
+text-align:left;
+padding: 5px;
+font-weight:border;
+
+}
+
+#idCheck{
+	text-align:center;
+}
+
+
+#registerForm input{
+    width: 250px;
+    height: 35px;
+    padding: 0 10px;
+    background-color: #eaf3ef;
+    border-radius:6px;
+    border:none;
+}
+
+
+
+#registerForm input:focus {outline: 2px solid rgb(43, 150, 114);} /* outline �뀒�몢由� �냽�꽦 �닔�젙 */
+
+#registerForm p{
+	font-size:12px;
+	width:100px;
+	height:8px;
+}
+
+#favoriteForm h1{
+	font-size:25px;
+    margin-top:60px;
+	color:rgb(43, 150, 114);
+	margin-bottom: 20px;
+    font-family: 'yg-jalnan';
+}
+
+
+
+#favoriteForm table{
+    margin:auto;
+    padding:5%;
+    border-collapse:separate;
+    border-spacing: 10px 20px;
+    font-size:15px;
+}
+
+#favoriteForm input[type="checkbox"]{
+    accent-color: green;
+  }
+
+  button{
+    color: #fff;
+    font-size: 15px;
+    background-color: rgb(43, 150, 114);
+	border: 1px solid silver;
+	padding: 10px 20px;
+    font-family:'Pretendard-Regular';
+    border-radius:6px;
+}
+
+button:hover{
+    background-color:#222;
+	color:#fff;
+}
+
+#submit{
+	margin-top: 30px;
+    margin-bottom:40px;
+}
+
+footer{
+    width:100%;
+    height:100px;
+    background-color:#050e07;
+}
+
+
+#registerForm button{
+	font-size:12px;
+    padding:6px;
+}
+
+

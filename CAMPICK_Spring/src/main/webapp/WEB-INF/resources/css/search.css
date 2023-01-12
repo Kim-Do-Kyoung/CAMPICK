@@ -1,0 +1,232 @@
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {/*d*/
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {/*감성쩔*/
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face { /*에스코어 드림*/
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    background: url(../image/nature.jpg)no-repeat 100%;
+    position: relative;
+}
+
+a{
+    text-decoration:none;
+}
+ul{
+    list-style:none;
+}
+#conatiner{ /*전체 구조*/
+    margin:0 auto;
+    width: 1200px;
+}
+/* 헤더 */
+header{
+    width:100%;
+    height:200px;
+    background-color:#375959;
+}
+
+#logo{
+    float:left;
+    width:250px;
+    height:100px;
+    line-height:70px;
+    padding:20px;
+    
+}
+#logo h1{
+    font-family: 'yg-jalnan';
+    font-weight:100;
+    font-size:50px;
+    color:#fff;
+    text-shadow:0 -1px 0 #222;
+}
+#inform{
+    float:right;
+    width:600px;
+    height:100px;
+    padding-right:10px;
+    font-size:18px;
+    font-family: 'S-CoreDream-3Light';
+}
+#inform > ul>li{
+    float: right;
+    padding:15px;
+    margin-right:20px;
+    font-weight:600;
+}
+
+#inform> ul>li> a{
+    display:block;
+    color:white;
+}
+#inform> ul>li> a:hover{
+    color:#07c;
+}
+
+nav{
+    font-size:18px;
+    clear:both;
+    width:100%;
+    height:80px;
+    overflow:hidden;
+    padding:50px;
+    background-color:#375959;
+    font-family: 'S-CoreDream-3Light';
+}
+
+
+#topMenu > li{
+    float : left;
+    margin-right:50px;
+    margin-top:-20px;
+}
+
+#topMenu > li > a{
+    display:block;
+    color:white;
+    font-weight:600;
+}
+
+#topMenu > li > a:hover{
+    color:#D1433A; /*마우스 포인터 올리면 바뀌는 색*/
+
+}
+
+#contents{
+    width:100%;
+    height:700px;
+    position: relative;
+}
+
+#contents h2{
+    font-weight:bold;
+    font-size:25px;
+    color:rgb(58, 58, 58);
+    margin-top:50px;
+    margin-left:50px;
+    font-family: 'S-CoreDream-3Light';
+}
+fieldset #campSearch {
+    border:solid 2px;
+    border-radius: 10%;
+    width: 700px;
+    height:400px;
+    background-color:rgba(255, 255, 255, 0.5);
+    text-align: center;
+    margin:auto;
+    font-family: 'S-CoreDream-3Light';
+}
+#campSearch h2{
+    font-family: 'GangwonEdu_OTFBoldA';
+    font-weight:border;
+    font-size:35px;
+    margin:auto;
+    margin-top:60px;
+    margin-bottom:50px;
+}
+#campSearch label{
+    float: left;  /* 왼쪽으로 배치 */
+	font-size: 20px;  /* 글자 크기 - 13px */
+    margin-left:60px;
+}
+input[type=search]{
+    width: 61%;
+    height: 30px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    margin-right:19px;
+}
+select,#input_cdo,#input_gungu{
+    width: 30%;
+    height: 30px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+input[type=checkbox] {
+  transform : scale(1.5); 
+  vertical-align: auto;
+  margin-left:10px;
+  margin-right:5px;
+}
+
+button[type="button"]{
+    display:block;
+    color: #fff;
+    font-size: 20px;
+    background-color: rgb(43, 150, 114);
+    margin:auto;
+    margin-top: 40px;
+	border: 1px solid silver;
+	padding: 10px 140px;
+    font-family:'Pretendard-Regular';
+}
+
+button:hover{
+    background-color:#222;
+	color:#fff;
+}
+
+footer{
+    width:100%;
+    height:100px;
+    background-color:#050e07;
+}
+#detailbutton>button{
+    padding: 9px 20px;
+    position: absolute;
+    top: 638px;
+    right: 520px;
+}
+fieldset{
+    position: relative;
+    border: none;
+    width: 700px;
+    margin: auto;
+}
+#detailbutton{
+    display:block;
+    color: #fff;
+    font-size: 20px;
+    background-color: rgb(43, 150, 114);
+	border: 1px solid silver;
+	padding: 10px 20px;
+    font-family:'Pretendard-Regular';
+    position: absolute;
+    right: 15%;
+    bottom: 15.3%;
+  }
+  #detailbutton:hover{
+    background-color:#222;
+	color:#fff;
+  }
+  #contents >h2{
+    margin-bottom: 100px;
+  }
