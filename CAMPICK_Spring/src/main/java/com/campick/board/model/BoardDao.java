@@ -47,7 +47,7 @@ public class BoardDao {
 	//게시판 작성 글 목록을 불러오는 메소드
 	public List<BoardDto> getDBList(int startRow , int pageSize) throws SQLException{
 		String sql = "select * from (select rownum rn , a.* from (select b.* from board b order by board_id desc) a ) where rn >=? and rn <=?";
-		return jdbcTemplate.query(sql, new BoardDtoMapper(),startRow,pageSize);
+		return jdbcTemplate.query(sql, new BoardDtoMapper(),startRow,startRow+pageSize-1);
 	}
 	
 	//게시판 글 상세 페이지 정보를 불러오는 메세지

@@ -66,11 +66,11 @@
                         <div class="photo">
                         	<c:set var="board_img" value="${boardList.board_img }"></c:set>
                         	<c:choose>
-	                        	<c:when test="${borad_img == null}">
-	                        		<img src="image/noimage.png">
+	                        	<c:when test="${board_img == null}">
+	                        		<img src="/image/noimage.png">
 	                        	</c:when>	
 	                        	<c:otherwise>
-		                        	<img src="image/${boardList.board_img }">
+		                        	<img src="/image/${boardList.board_img }">
 	                        	</c:otherwise>
                         	</c:choose>
 	                   	</div>
@@ -80,6 +80,7 @@
                     </li>
                </a>
               </c:forEach>
+            </ul>
         </div>
         <div id=page_contorl>
         	<ul>
@@ -114,7 +115,7 @@
         	<%			
         				}
         			}
-        			if(endPage < pageCount){
+        			if(curPage < pageCount){
         	%>
         				<li class=page_li>
         					<a href=list?page=<%=curPage +1 %>>다음</a>

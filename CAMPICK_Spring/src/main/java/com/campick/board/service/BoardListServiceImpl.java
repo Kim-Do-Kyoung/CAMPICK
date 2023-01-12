@@ -23,7 +23,6 @@ public class BoardListServiceImpl implements BoardListService{
 	//List를 보여주는 메소드
 	@Override
 	public void execute(Model model,HttpServletRequest request) throws SQLException {
-		Map<String, Object> map = model.asMap();
 		int curPage= (int)request.getAttribute("page");
 		int pageSize = 9;
     	int startRow = ((curPage-1) * pageSize) +1 ;
