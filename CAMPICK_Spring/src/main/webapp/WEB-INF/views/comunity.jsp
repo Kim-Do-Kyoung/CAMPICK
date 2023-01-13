@@ -3,7 +3,7 @@
    	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
      
     <%
-       	UserDto loginUser = (UserDto)session.getAttribute("loginUser");
+		UserDto loginUser = (UserDto)session.getAttribute("loginUser");
   		int count = (int)request.getAttribute("count");
     %>
 <!DOCTYPE html>
@@ -25,14 +25,14 @@
              <c:choose>
            	 <c:when test="${loginUser==null}">
            	 <ul>
-              	<li><a href="login.jsp">로그인</a></li>
+              	<li><a href="/user/login">로그인</a></li>
            	 </ul>
             </c:when>
             <c:otherwise>
              <ul>
             	<li><a href="userLogout.do">로그아웃</a></li>
          	    <li><a href="myPage.jsp">마이페이지</a></li>
-           		<li style="color:white;"><%=loginUser.getName() %>님</li>
+           		<li style="color:white;">${loginUser.name }님</li>
            	 </ul>
             </c:otherwise>
             </c:choose>
@@ -61,7 +61,7 @@
     </div><br><br><br>
             <ul id="gallery">
               <c:forEach items="${boardList }" var="boardList">
-                <a href="boradDetail.do?borad_id=${boardList.board_id}">
+                <a href="detail?board_id=${boardList.board_id}">
                     <li>
                         <div class="photo">
                         	<c:set var="board_img" value="${boardList.board_img }"></c:set>
@@ -86,9 +86,13 @@
         	<ul>
         	<%
         		if(count != 0){
+        			String reqPage = request.getParameter("page");
+        	    	if(reqPage == null){
+        	    		reqPage = "1";
+        	    	}
         			int pageSize = 9; // 페이지당 보여주는 게시글 갯수
         			int pageCount = count / pageSize + (count % pageSize == 0? 0:1); //페이지 갯수
-        	    	int curPage = Integer.parseInt(request.getParameter("page")); //현재 페이지
+        	    	int curPage = Integer.parseInt(reqPage); //현재 페이지
         	    	int pageBlock = 10; //페이지 보여주는 갯수 
         	    	
         	    	int startPage = ((curPage-1)/pageBlock)*pageBlock+1;
@@ -132,7 +136,7 @@
     </footer>
     <script>
     function writeBorad(){
-        document.location.href="/CAMPICK/writePage.jsp";
+        document.location.href="write";
     }
 </script>
 </body>

@@ -7,14 +7,14 @@
 <head>
     <meta charset="UTF-8">
     <title>CAMPICK</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
 
     <div id="logo">
             <h1> <a href="main.do">CAMPICK</a></h1>
     </div>
-    <form class="wrapper" method="post" action="userLogin.do">
+    <form class="wrapper" method="post" action="login">
       <h1>환영합니다!</h1>
               <input id="userid" name="userid" type="text" placeholder="id 입력" required autofocus><br>
               <input id="password" name="password" type="password" placeholder="password 입력" required>

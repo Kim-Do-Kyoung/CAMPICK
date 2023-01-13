@@ -5,19 +5,21 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.user.model.UserDao;
-import com.user.model.UserDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.campick.user.model.UserDao;
+import com.campick.user.model.UserDto;
+
+@Service
 public class LoginServicelmpl implements LoginService{
 	
-	private UserDao userDao;
+	@Autowired
+	UserDao uDao;
 	
-	public LoginServicelmpl() {
-		userDao=UserDao.getInstance();
-	}
 	@Override
 	public UserDto execute(String loginId, String loginPw){
-		UserDto loginUser = userDao.login(loginId, loginPw);
+		UserDto loginUser = uDao.login(loginId, loginPw);
 		return loginUser;
 	}
 }

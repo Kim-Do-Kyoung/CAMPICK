@@ -9,14 +9,30 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class UserDao {
 	
-	private static UserDao instance = new UserDao();
+	@Autowired
+	JdbcTemplate jdbcTemplate;
 	
-	public UserDao() {}
-	
-	public static UserDao getInstance() {
-		return instance;
+	private class UserDtoMapper implements RowMapper<UserDto>{
+
+		@Override
+		public UserDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			UserDto uDto = new UserDto();
+			uDto.setId(rs.getString("id"));
+			uDto.setPw(rs.getString("pw"));
+			uDto.setName(rs.getString("name"));
+			uDto.setAddr(rs.getString("addr"));
+			uDto.setPhone(rs.getString("phone"));
+			uDto.setEmail(rs.getString("email"));
+			return uDto;
+		}
 	}
 	
 	private Connection getConnection() {
@@ -72,45 +88,8 @@ public class UserDao {
 	
 	public UserDto login(String loginId, String loginPw) {
 		System.out.println("로그인 dao까지 넘어옴~");
-		System.out.println(loginId);
-		
-		UserDto loginUser = null;
-		Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
-		
-		try {
-			conn=getConnection();
-			pstmt= conn.prepareStatement("SELECT * FROM USER_TB WHERE ID=? AND PW=?");
-			pstmt.setString(1, loginId); //비워둔 부분에 받아온 id를 넣음
-			pstmt.setString(2, loginPw); //비워둔 부분에 받아온 pw를 넣음
-			rs = pstmt.executeQuery(); //그 결과를 rs에 저장
-			
-			
-			rs.next();
-			String id = rs.getString("id");
-			String pw = rs.getString("pw");
-			String name = rs.getString("name");
-			String addr = rs.getString("addr");
-			String phone = rs.getString("phone");
-			String email = rs.getString("email");
-			   
-			loginUser=new UserDto(id, pw, name, addr, phone, email);
-			
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-//				rs.close();
-				pstmt.close();
-				conn.close();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return loginUser;
+		String sql = "SELECT * FROM USER_TB WHERE ID=? AND PW=?";
+		return jdbcTemplate.queryForObject(sql, new UserDtoMapper(),loginId,loginPw);
 	}
 	
 	
