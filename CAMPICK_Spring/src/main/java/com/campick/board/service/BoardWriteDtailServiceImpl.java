@@ -19,7 +19,7 @@ public class BoardWriteDtailServiceImpl implements BoardWriteDetailService{
 	@Override
 	public void execute(Model model) throws SQLException {
 		Map<String, Object> map = model.asMap();
-		int boardId = (int)map.get("boardid");
+		int boardId = (int)map.get("boardId");
 		model.addAttribute("bDto", boardDao.getDB(boardId));
 	}
 

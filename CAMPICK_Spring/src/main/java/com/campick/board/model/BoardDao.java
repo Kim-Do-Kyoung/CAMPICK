@@ -20,7 +20,6 @@ public class BoardDao {
 
 		@Override
 		public BoardDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-			System.out.println("db mapRow 들어옴");
 			BoardDto bDto = new BoardDto();
 			bDto.setBoard_id(rs.getInt("board_id"));
 			bDto.setBoard_visit(rs.getInt("board_visit"));
@@ -72,32 +71,10 @@ public class BoardDao {
 //			pstmt.close();
 //		}
 //	}
-//	//게시판 수정 메소드
-//	public boolean updateDB(int id,BoradDto boradDto) throws SQLException {
-//		
-//		Connection connection = null;
-//		PreparedStatement pstmt = null;
-//		
-//		String sql = "update borad set borad_name=?,camp_name=?,borad_period_first=?,borad_period_second=?,borad_text=?,borad_img=? where borad_id="+id;
-//		try {
-//			connection = getConnection();
-//			pstmt = connection.prepareStatement(sql);
-//			pstmt.setString(1,boradDto.getBorad_name());
-//			pstmt.setString(2,boradDto.getCamp_name());
-//			pstmt.setString(3,boradDto.getBorad_period_first());
-//			pstmt.setString(4,boradDto.getBorad_period_second());
-//			pstmt.setString(5,boradDto.getBorad_text());
-//			pstmt.setString(6,boradDto.getBorad_img());
-//			pstmt.executeUpdate();
-//		}catch(SQLException e) {
-//			e.printStackTrace();
-//			return false;
-//		}finally {
-//			connection.close();
-//			pstmt.close();
-//		}
-//		return true;
-//	}
+	//게시판 수정 메소드
+	public void updateDB(String bn,String cn,String bpf,String bps,String bt,String bi,String b_id) throws SQLException {
+		String sql = "update board set board_name=?,camp_name=?,board_period_first=?,board_period_second=?,board_text=?,board_img=? where board_id=?";
+	}
 //	//게시판 삭제 메소드
 //	public boolean deleteDB(int borad_id) throws SQLException {
 //		Connection connection = null;

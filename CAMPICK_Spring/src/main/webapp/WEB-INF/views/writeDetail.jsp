@@ -23,7 +23,7 @@
                 <c:choose>
 		           	 <c:when test="${loginUser==null}">
 			           	 <ul>
-	              		 	<li><a href="login.jsp">로그인</a></li>
+	              		 	<li><a href="/user/login">로그인</a></li>
 	         		  	 </ul>
          		     </c:when>
             		<c:otherwise>
@@ -76,8 +76,8 @@
         </div>
         <hr style="border: solid 2px #eee;" width="90%">
         <div id="writecontents">
-        	<c:set var="borad_img" value="${bDto.board_img }"></c:set>
-            <c:if test="${borad_img != null}">
+        	<c:set var="board_img" value="${bDto.board_img }"></c:set>
+            <c:if test="${board_img != null}">
 	            <img src="/image/${bDto.board_img }" alt="이미지" width="500px" height="350px">
             </c:if>
             <p>
@@ -182,7 +182,7 @@
             }
         }
         function w_edit(){
-        	document.location.href="boradEdit.do";
+        	document.location.href="edit";
         }
         function togleReComment(index){
         	var select = document.querySelectorAll('.insertReComment');

@@ -21,7 +21,7 @@
              <c:choose>
           		 <c:when test="${loginUser==null}">
            			 <ul>
-            		 	<li><a href="/login.jsp">로그인</a></li>
+            		 	<li><a href="/user/login">로그인</a></li>
        		  		 </ul>
       		    </c:when>
          		<c:otherwise>
@@ -52,9 +52,9 @@
   		</div>
     <div class="tab">
         <div class="main" style="text-align:center">
-	        <form id="form2" method="post" action="boradInsert.do" enctype="multipart/form-data">
+	        <form id="form2" method="post" action="write" enctype="multipart/form-data">
 	            <ul>
-		        	<li><dt>제목<span class="font05"> *</span></dt><dd><input type="text" style="width:100%;" name="borad_name" required></input></dd></li>
+		        	<li><dt>제목<span class="font05"> *</span></dt><dd><input type="text" style="width:100%;" name="board_name" required></input></dd></li>
                   	<li>
                           <dt>캠핑장 이름</dt>
                           <dd>
@@ -64,15 +64,15 @@
              		 <li>
                          <dt>여행일자</dt>
                          <dd>
-                             <input type="date" style="width:130px;" name="borad_period_first" required>
+                             <input type="date" style="width:130px;" name="board_period_first" required>
                              &nbsp;~&nbsp;
-                             <input type="date" style="width:130px;" name="borad_period_second" required>
+                             <input type="date" style="width:130px;" name="board_period_second" required>
                          </dd>
                         </li>
                      <li class="textarea" style="height:180px;">
                          <dt>내용<span class="font05"> *</span></dt>
                          <dd>
-    	                        <p><textarea style="width:100%; height:180px" name="borad_text" required></textarea></p>
+    	                        <p><textarea style="width:100%; height:180px" name="board_text" required></textarea></p>
     	                       
                          </dd>
                      </li>
@@ -82,7 +82,7 @@
                              <div class="filebox">
                                  <input class="upload-name" id="fileName" readonly>
                                  <label for="filename">업로드</label> 
-                                 <input type="file" id="filename" class="upload-hidden" name="borad_img" accept=".gif, .jpg, .png" onchange="javascript:document.getElementById('fileName').value = this.value"> 
+                                 <input type="file" id="filename" class="upload-hidden" name="uploadFile" accept=".gif, .jpg, .png" onchange="javascript:document.getElementById('fileName').value = this.value"> 
                              </div>
                          </dd>
                      </li>

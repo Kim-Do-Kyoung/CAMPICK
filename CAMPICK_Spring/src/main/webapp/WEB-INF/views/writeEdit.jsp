@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.borad.model.* ,com.user.model.*" %>
+    pageEncoding="UTF-8" import="com.campick.user.model.*" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
-	BoardDto dto = BoardDao.getInstance().getDB((int)session.getAttribute("boradid"));
 	UserDto loginUser = (UserDto)session.getAttribute("loginUser");
 %>
 <!DOCTYPE html>
@@ -11,13 +10,13 @@
 <head>
     <meta charset="UTF-8">
     <title>CAMPICK</title>
-    <link rel="stylesheet" href="css/writepage.css">
+    <link rel="stylesheet" href="/css/writepage.css">
 </head> 
 <body>
     <div id="container">
     <header>
         <div id="logo">
-            <a href="main.do">
+            <a href="/">
                 <h1>CAMPICK</h1>
             </a>
         </div>
@@ -25,7 +24,7 @@
              <c:choose>
           		 <c:when test="${loginUser==null}">
            			 <ul>
-            		 	<li><a href="login.jsp">로그인</a></li>
+            		 	<li><a href="/user/login">로그인</a></li>
        		  		 </ul>
       		    </c:when>
          		<c:otherwise>
@@ -44,7 +43,7 @@
             <li><a href="search.jsp">캠핑장찾기</a></li>
             <li><a href="tagSearch.jsp">태그로 찾기</a></li>
             <li><a href="analysis.jsp">캠핑 예측Pick</a></li>
-            <li><a href="boradList.do">커뮤니티</a></li>
+            <li><a href="list">커뮤니티</a></li>
         </ul>
     </nav>
 	</header>
@@ -56,27 +55,27 @@
   		</div>
     <div class="tab">
         <div class="main" style="text-align:center">
-	        <form id="form2" method="post" action="boradUpdate.do" enctype="multipart/form-data">
+	        <form id="form2" method="post" action="update" enctype="multipart/form-data">
 	            <ul>
-		        	<li><dt>제목<span class="font05"> *</span></dt><dd><input type="text" style="width:100%;" name="borad_name" value="<%=dto.getBorad_name() %>" required></input></dd></li>
+		        	<li><dt>제목<span class="font05"> *</span></dt><dd><input type="text" style="width:100%;" name="board_name" value="${bDto.board_name }" required></input></dd></li>
                   	<li>
                         <dt>캠핑장 이름</dt>
                         <dd>
-                            <input type="text" style="width:100%;" name="camp_name" value="<%=dto.getCamp_name() %>" required>
+                            <input type="text" style="width:100%;" name="camp_name" value="${bDto.camp_name }" required>
                           </dd>
                  	 </li>
              		 <li>
                          <dt>여행일자</dt>
                          <dd>
-                             <input type="date" style="width:130px;" name="borad_period_first" value="<%=dto.getBorad_period_first() %>" required>
+                             <input type="date" style="width:130px;" name="board_period_first" value="${bDto.board_period_first }" required>
                              &nbsp;~&nbsp;
-                             <input type="date" style="width:130px;" name="borad_period_second" value="<%=dto.getBorad_period_second() %>" required>
+                             <input type="date" style="width:130px;" name="board_period_second" value="${bDto.board_period_second }" required>
                          </dd>
                         </li>
                      <li class="textarea" style="height:180px;">
                          <dt>내용<span class="font05"> *</span></dt>
                          <dd>
-    	                        <p><textarea style="width:100%; height:180px" name="borad_text" required><%=dto.getBorad_text() %></textarea></p>
+    	                        <p><textarea style="width:100%; height:180px" name="board_text" required>${bDto.board_text }</textarea></p>
     	                       
                          </dd>
                      </li>
