@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "java.util.*,com.user.model.*"%>
+    pageEncoding="UTF-8" import = "java.util.*,com.campick.user.model.*"%>
    	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
      
     <%  UserDto loginUser = (UserDto)session.getAttribute("loginUser");%>
@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>CAMPICK</title>
-    <link rel="stylesheet" href="css/campDetail.css">
+    <link rel="stylesheet" href="/css/campDetail.css">
 </head> 
 <body>
     <div id="container">

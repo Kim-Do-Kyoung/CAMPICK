@@ -15,7 +15,7 @@ import com.campick.user.service.LoginService;
 
 @Controller
 @RequestMapping("user")
-public class UserController2 {
+public class UserController {
 	
 	@Autowired
 	LoginService loginService;
@@ -36,6 +36,13 @@ public class UserController2 {
 		}else {
 			System.out.println("로그인 실패");
 		}
+		return "redirect:/";
+	}
+	
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		System.out.println("로그아웃");
+		session.invalidate();
 		return "redirect:/";
 	}
 }

@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>CAMPICK</title>
-    <link rel="stylesheet" href="css/tagSearch.css">
+    <link rel="stylesheet" href="/css/tagSearch.css">
 
 </head>
 <body>
