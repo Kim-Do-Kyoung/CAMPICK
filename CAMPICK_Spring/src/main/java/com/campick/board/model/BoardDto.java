@@ -14,7 +14,6 @@ public class BoardDto {
 	private String board_img;
 	private int db_count;
 	
-	
 	public int getBoard_id() {
 		return board_id;
 	}

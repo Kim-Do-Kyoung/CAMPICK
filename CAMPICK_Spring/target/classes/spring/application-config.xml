@@ -22,4 +22,7 @@
 	
 	<context:component-scan base-package="com.campick.*"></context:component-scan>
 	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
 </beans>

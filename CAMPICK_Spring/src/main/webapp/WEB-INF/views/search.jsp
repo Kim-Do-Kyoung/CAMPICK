@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import = "java.util.*,com.campick.user.model.*" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-     
-    <%  UserDto loginUser = (UserDto)session.getAttribute("loginUser");%>
-
+<%
+	UserDto loginUser = (UserDto)session.getAttribute("loginUser");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,7 +16,7 @@
     <div id="container">
         <header>
             <div id="logo">
-                <a href="home">
+                <a href="/">
                     <h1>CAMPICK</h1>
                 </a>
             </div>
@@ -25,14 +25,14 @@
             <c:choose>
             <c:when test="${loginUser==null}">
             <ul>
-              <li><a href="login.jsp">로그인</a></li>
+              <li><a href="/user/login">로그인</a></li>
             </ul>
             </c:when>
             <c:otherwise>
             <ul>
-            <li><a href="userLogout.do">로그아웃</a></li>
+            <li><a href="/user/logout">로그아웃</a></li>
             <li><a href="myPage.jsp">마이페이지</a></li>
-            <li style="color:white;"><%=loginUser.getName() %>님</li>
+            <li style="color:white;">${loginUser.name }님</li>
             </ul>
             </c:otherwise>
             </c:choose>

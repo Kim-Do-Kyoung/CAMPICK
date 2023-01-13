@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.user.model.UserDto;
+import com.campick.user.model.UserDto;
+
 
 public interface LoginService {
 	

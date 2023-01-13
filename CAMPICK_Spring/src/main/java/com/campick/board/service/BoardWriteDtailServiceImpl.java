@@ -1,30 +1,26 @@
 package com.campick.board.service;
 
 import java.sql.SQLException;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
-import com.campick.board.model.BoradDao;
-import com.campick.board.model.BoardDto;
+import com.campick.board.model.BoardDao;
 
+@Service
 public class BoardWriteDtailServiceImpl implements BoardWriteDetailService{
-	BoradDao dao;
-	
-	public BoardWriteDtailServiceImpl() {
-		// TODO Auto-generated constructor stub
-		dao = BoradDao.getInstance();
-	}
 	//글 디테일 페이지 보여주는 메소드
+	
+	@Autowired
+	BoardDao boardDao;
+
 	@Override
-	public BoardDto execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		int boradId = (int)session.getAttribute("boradid");
-		BoardDto dto = dao.getDB(boradId);
-		dao.increaseVisit(boradId);
-		return dto;
+	public void execute(Model model) throws SQLException {
+		Map<String, Object> map = model.asMap();
+		int boardId = (int)map.get("boardid");
+		model.addAttribute("bDto", boardDao.getDB(boardId));
 	}
 
 }

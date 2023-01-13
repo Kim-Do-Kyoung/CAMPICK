@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.borad.model.*, com.comment.model.*, java.util.* ,com.user.model.*"%>
+    pageEncoding="UTF-8" import="com.campick.user.model.*"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	BoardDao dao = BoardDao.getInstance();
-	BoardDto dto = dao.getDB((int)session.getAttribute("boradid"));
 	UserDto loginUser = (UserDto)session.getAttribute("loginUser");
 %>
-<jsp:useBean id="commentList" scope="request" class="java.util.ArrayList"></jsp:useBean>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,7 +15,7 @@
     <div id="container">
         <header>
             <div id="logo">
-                <a href="main.do">
+                <a href="/">
                     <h1>CAMPICK</h1>
                 </a>
             </div>
@@ -33,7 +30,7 @@
              			<ul>
             				<li><a href="userLogout.do">로그아웃</a></li>
          	    			<li><a href="myPage.jsp">마이페이지</a></li>
-           					<li style="color:white;"><%=loginUser.getName() %>님</li>
+           					<li style="color:white;">${loginUser.name }님</li>
            		 		</ul>
             		</c:otherwise>
             	</c:choose>
@@ -43,7 +40,7 @@
                 <li><a href="search.jsp">캠핑장찾기</a></li>
 	            <li><a href="tagSearch.jsp">태그로 찾기</a></li>
 	            <li><a href="analysis.jsp">캠핑 예측Pick</a></li>
-	            <li><a href="boradList.do">커뮤니티</a></li>
+	            <li><a href="/board/list">커뮤니티</a></li>
           	</ul>
             </nav>
         </header>
@@ -53,50 +50,53 @@
             <table id="table1">
                 <tr>
                     <td class="title">글번호</td>
-                    <td><%=dto.getBorad_id() %></td>
+                    <td>${bDto.board_id }</td>
                     <td class="title">조회수</td>
-                    <td><%=dto.getBorad_visit() %></td>
+                    <td>${bDto.board_visit }</td>
                     <td class="title">추천수</td>
-                    <td><%=dto.getBorad_suggestion() %></td>
+                    <td>${bDto.board_suggestion }</td>
                     <td class="title">글작성일</td>
-                    <td><%=dto.getBorad_date() %></td>
+                    <td>${bDto.board_date }</td>
                 </tr>
             </table>
             <table id="table2">
                 <tr>
                     <td class="title">캠핑장</td>
-                    <td><%=dto.getCamp_name() %></td>
+                    <td>${bDto.camp_name }</td>
                     <td class="title">기간</td>
-                    <td><%=dto.getBorad_period_first() %> ~ <%=dto.getBorad_period_second() %></td>
+                    <td>${bDto.board_period_first } ~ ${bDto.board_period_second }</td>
 
                 </tr>
                 <tr>
                     <td class="title">글제목</td>
-                    <td colspan="3"><%=dto.getBorad_name() %></td>
+                    <td colspan="3">${bDto.board_name }</td>
                 </tr>
             </table>
-            <span id="writer">작성자 <%=dto.getName() %></span>
+            <span id="writer">작성자 ${bDto.name }</span>
         </div>
         <hr style="border: solid 2px #eee;" width="90%">
         <div id="writecontents">
-        	<c:set var="borad_img" value="<%=dto.getBorad_img() %>"></c:set>
+        	<c:set var="borad_img" value="${bDto.board_img }"></c:set>
             <c:if test="${borad_img != null}">
-	            <img src="image/<%=dto.getBorad_img()%>" alt="이미지" width="500px" height="350px">
+	            <img src="/image/${bDto.board_img }" alt="이미지" width="500px" height="350px">
             </c:if>
             <p>
-             	<%=dto.getBorad_text() %>
+             	${bDto.board_text }
             </p>
             <c:choose>
             	<c:when test="${loginUser != null }">
-            	<%if(loginUser.getName().equals(dto.getName())){ %>
-		            <button onclick="w_edit()" id="w_edit">수정</button>
-		            <button onclick="w_remove()" id="w_remove">삭제</button>
-	            	<button onclick="goList()" id="goList">목록</button>
-    	        	<button onclick="w_like()" id="w_good">추천</button>
-	            <%}else{ %>
-    	        	<button onclick="w_good()" id="w_good">추천</button>
-		           	<button onclick="goList()" id="goList">목록</button>
-	            <%} %>
+            	  <c:choose>
+            	    <c:when test="${loginUser.name eq bDto.name }">
+     	              <button onclick="w_edit()" id="w_edit">수정</button>
+		              <button onclick="w_remove()" id="w_remove">삭제</button>
+	            	  <button onclick="goList()" id="goList">목록</button>
+    	        	  <button onclick="w_like()" id="w_good">추천</button>
+            	    </c:when>
+            	    <c:otherwise>
+    	        	  <button onclick="w_good()" id="w_good">추천</button>
+		           	  <button onclick="goList()" id="goList">목록</button>
+            	    </c:otherwise>
+            	  </c:choose>
             	</c:when>
             </c:choose>
            	<button onclick="goList()" id="goList">목록</button>
@@ -114,15 +114,15 @@
 	        			<td height="10px" class="ganguk">${comment.reply_time }</td>
 	        			<c:choose>
             			<c:when test="${loginUser != null }">
-			        			<td width=35px><button class="reComment" onclick="togleReComment(${status.index})">답글</button></td>
+			         	  <td width=35px><button class="reComment" onclick="togleReComment(${status.index})">답글</button></td>
 	        			</c:when>
 	        			</c:choose>
-	        		</tr>
+	       		</tr>
 	        	</table>
 		        </c:if>
-	        	<c:if test ="${comment.depth == 1 }"> <%--recomment.bundle_id == comment.bundle_id --%>
-        			<table>
-		        		<tr>
+	        	<c:if test ="${comment.depth == 1 }">
+        	      <table>
+	        		<tr>
 		        			<td width=70px rowspan="2"><img src="image/recomment.png" width=100% height=100%></td>
 		        			<td rowspan="2" align="center" width = "70px" style="border-right: 1px solid #eee ">${comment.name }</td>
 		        			<td colspan="4" class="ganguk" style="border-bottom: 1px solid #eee">${comment.reply }</td>
@@ -140,7 +140,7 @@
 			        			<table>
 				        			<tr>
 				        				<td width=70px><img src="image/recomment.png" width=100% height=100%></td>
-					        			<td width = "70px"><%=loginUser.getName() %></td>
+					        			<td width = "70px">${loginUser.name }</td>
 				        				<td><textarea rows="3" placeholder="댓글을 입력해주세요" name="reply" required></textarea></td>
 				        				<td width=30px><button>등록</button></td>
 				        			</tr>
@@ -158,7 +158,7 @@
             	<c:when test="${loginUser != null }">
 	        	<table>
         			<tr>
-	        			<td width = "70px"><%=loginUser.getName() %></td>
+	        			<td width = "70px">${loginUser.name }</td>
         				<td><textarea rows="3" placeholder="댓글을 입력해주세요" name="reply" required></textarea></td>
         				<td width=30px><button>등록</button></td>
         			</tr>
@@ -172,7 +172,7 @@
 </div>
     <script>
         function goList(){
-            document.location.href="boradList.do";
+            document.location.href="list";
         }
         function w_remove(){
             var check = confirm("삭제 하시겠습니까?");
