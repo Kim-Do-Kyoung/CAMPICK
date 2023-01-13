@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <title>CAMPICK</title>
-    <link rel="stylesheet" href="css/writepage.css">
+    <link rel="stylesheet" href="/css/writepage.css">
 </head> 
 <body>
     <div id="container">

@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <title>CAMPICK</title>
-    <link rel="stylesheet" href="css/writedetail.css">
+    <link rel="stylesheet" href="/css/writedetail.css">
 </head>
 <body>
     <div id="container">

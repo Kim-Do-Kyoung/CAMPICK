@@ -35,7 +35,7 @@
       	  	</nav>
     	</header>
 
-    <form name="joinForm" >
+    <form name="joinForm" action="/register">
         <div id="registerForm">
         <h1>회원 가입</h1>
         
