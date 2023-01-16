@@ -28,6 +28,7 @@ public class UserController {
 	@PostMapping("login")
 	public String login(@RequestParam("userid")String userid,@RequestParam("password")String password ,
 			Model model,HttpSession session) {
+		
 		UserDto loginUser = loginService.execute(userid, password);
 		if(loginUser != null) {
 			System.out.println("로그인 성공!");

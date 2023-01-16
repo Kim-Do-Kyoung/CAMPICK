@@ -31,7 +31,7 @@
           			<ul>
          				<li><a href="userLogout.do">로그아웃</a></li>
       	    			<li><a href="myPage.jsp">마이페이지</a></li>
-        					<li style="color:white;"><%=loginUser.getName() %>님</li>
+        					<li style="color:white;">${loginUser.name}님</li>
         		 		</ul>
          		</c:otherwise>
            	</c:choose>
@@ -56,6 +56,7 @@
     <div class="tab">
         <div class="main" style="text-align:center">
 	        <form id="form2" method="post" action="update" enctype="multipart/form-data">
+	          <input type="hidden" name="board_id" value="${bDto.board_id }">
 	            <ul>
 		        	<li><dt>제목<span class="font05"> *</span></dt><dd><input type="text" style="width:100%;" name="board_name" value="${bDto.board_name }" required></input></dd></li>
                   	<li>
@@ -85,7 +86,7 @@
                              <div class="filebox">
                                  <input class="upload-name" id="fileName" readonly>
                                  <label for="filename">업로드</label> 
-                                 <input type="file" id="filename" class="upload-hidden" name="borad_img" accept=".gif, .jpg, .png" onchange="javascript:document.getElementById('fileName').value = this.value"> 
+                                 <input type="file" id="filename" class="upload-hidden" name="uploadFile" accept=".gif, .jpg, .png" onchange="javascript:document.getElementById('fileName').value = this.value"> 
                              </div>
                          </dd>
                      </li>
