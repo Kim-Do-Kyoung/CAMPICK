@@ -38,9 +38,14 @@ public class SuggestDao {
 		String sql = "insert into board_suggest values (sug_seq.nextval,?,?,?,"+SUGGEST_OFF+")";
 		jdbcTemplate.update(sql,board_id,id,name);
 	}
-	public SuggestDto checkDB(int board_id, String id , String name) throws SQLException {
+	public int checkDB(int board_id, String id , String name) throws SQLException {
 		String sql = "SELECT checked from board_suggest where board_id = ? AND id=? AND name=?";
-		return jdbcTemplate.queryForObject(sql, new SuggestDtoMapper(),board_id,id,name);
+		try {
+			return jdbcTemplate.queryForObject(sql, Integer.class,board_id,id,name);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 	
 	public void updateChecked(int checked,int board_id,String id, String name) throws SQLException {

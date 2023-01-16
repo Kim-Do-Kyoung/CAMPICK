@@ -186,12 +186,15 @@ public class BoardController {
 	
 	@RequestMapping("suggest")
 	public void suggest(HttpServletRequest request,HttpServletResponse response ,HttpSession session) throws Exception {
+		response.setContentType("text/html; charset=utf-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter() ;
 		if(suggestService.execute(session) ==1) {
 			out.println("<script>alert('추천 하였습니다!'); location.href='/board/detail?board_id="+(int)session.getAttribute("boardId")+"';</script>");
 			out.flush();
 		}else {
-			out.println("<script>alert('추천을 취소하였습니다!'); location.href='/board/detail??borad_id="+(int)session.getAttribute("boardId")+"';</script>");
+			out.println("<script>alert('추천을 취소하였습니다!'); location.href='/board/detail?board_id="+(int)session.getAttribute("boardId")+"';</script>");
 			out.flush();
 		}
 	}
