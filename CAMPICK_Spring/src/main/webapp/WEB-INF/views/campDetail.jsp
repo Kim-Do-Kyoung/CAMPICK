@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "java.util.*,com.user.model.*"%>
+    pageEncoding="UTF-8" import = "java.util.*,com.campick.user.model.*"%>
    	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
      
     <%  UserDto loginUser = (UserDto)session.getAttribute("loginUser");%>
@@ -8,13 +8,13 @@
 <head>
     <meta charset="UTF-8">
     <title>CAMPICK</title>
-    <link rel="stylesheet" href="css/campDetail.css">
+    <link rel="stylesheet" href="/css/campDetail.css">
 </head> 
 <body>
     <div id="container">
     <header>
         <div id="logo">
-            <a href="main.do">
+            <a href="/">
                 <h1>CAMPICK</h1>
             </a>
         </div>
@@ -22,7 +22,7 @@
            <c:choose>
            	 <c:when test="${loginUser==null}">
            	 <ul>
-              	<li><a href="login.jsp">로그인</a></li>
+              	<li><a href="/user/login">로그인</a></li>
            	 </ul>
             </c:when>
            <c:otherwise>
@@ -41,16 +41,16 @@
 
     <nav>
         <ul id="topMenu">
-            <li><a href="search.jsp">캠핑장찾기</a></li>
+            <li><a href="/">캠핑장찾기</a></li>
             <li><a href="tagSearch.jsp">태그로 찾기</a></li>
             <li><a href="analysis.jsp">캠핑 예측Pick</a></li>
-            <li><a href="boradList.do">커뮤니티</a></li>
+            <li><a href="/board/list">커뮤니티</a></li>
             </ul>
     </nav>
     <div id="contents">
     <div class="headline">
     <h1>${scDto.camp_name }</h1>
-    <h2>캠핑장 정보 자세히보기</h2>
+    <h2>캠핑장 정보</h2>
     </div>
     <div class="tab">
         <div class="main" style="text-align:center">
@@ -64,15 +64,18 @@
             <label for="tab3">날씨정보</label>
          
             <section id="content1" style="margin-bottom:20px;">
-              <div class="carousel-wrapper">
-                <div class="carousel">
-             	  <img src="${giDto.imgUrl1 }">
-	              <img src="${giDto.imgUrl2 }">
-	              <img src="${giDto.imgUrl3 }">
+              <c:if test="${giDto != null }">
+                <div class="carousel-wrapper">
+                  <div class="carousel">
+                    <img src="${giDto.imgUrl1 }">
+	                <img src="${giDto.imgUrl2 }">
+	                <img src="${giDto.imgUrl3 }">
+                  </div>
+          		
+                  <button class="prev" type="button" id="prevButton">&lt;</button>
+   			      <button class="next" type="button" id="nextButton">&gt;</button>
                 </div>
-                <button class="prev" type="button" id="prevButton">&lt;</button>
-   			    <button class="next" type="button" id="nextButton">&gt;</button>
-              </div>
+              </c:if>
                 <table>
                     <tr>
                     	<th width="100px">소개글</th>
@@ -125,7 +128,16 @@
                 </table>
             </section>
             <section id="content2" style="margin-bottom:20px;">
-                <img src="image/map.PNG">
+                <iframe
+ 				  width="800"
+ 				  height="600"
+                  style="border:0"
+                  loading="lazy"
+                  allowfullscreen
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBQtz7kuCJWv0E91gGUnpX8bIsmvfj4TcM
+                    &q=${scDto.camp_name },${scDto.addr }&region=KR&language=ko">
+				</iframe>
             </section>
             <section id="content3" style="margin-bottom:20px;">
                 날씨정보
