@@ -8,15 +8,15 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/analysis.css">
+    <title>CAMPICK</title>
+    <link rel="stylesheet" href="/css/analysis.css">
 
 </head>
 <body>
     <div id="container">
         <header>
             <div id="logo">
-                <a href="main.do">
+                <a href="/">
                     <h1> CAMPICK</h1>
                 </a>
             </div>
@@ -24,12 +24,12 @@
             <c:choose>
            	 <c:when test="${loginUser==null}">
            	 <ul>
-              	<li><a href="login.jsp">로그인</a></li>
+              	<li><a href="/user/login">로그인</a></li>
            	 </ul>
             </c:when>
             <c:otherwise>
              <ul>
-            	<li><a href="userLogout.do">로그아웃</a></li>
+            	<li><a href="/user/logout">로그아웃</a></li>
          	    <li><a href="myPage.jsp">마이페이지</a></li>
            		<li style="color:white;"><%=loginUser.getName() %>님</li>
            	 </ul>
@@ -43,10 +43,10 @@
 
            <nav>
             <ul id="topMenu">
-                <li><a href="search.jsp">캠핑장찾기</a></li>
+                <li><a href="/">캠핑장찾기</a></li>
                 <li><a href="tagSearch.jsp">태그로 찾기</a></li>
                 <li><a href="analysis.jsp">캠핑 예측Pick</a></li>
-                <li><a href="boradList.do">커뮤니티</a></li>
+                <li><a href="/board/list">커뮤니티</a></li>
             </ul>
             </nav>
     </header>
@@ -73,7 +73,7 @@
     <hr>
     <div id="topic">
         <div class="graph">
-            <img src="image/area.PNG">
+            <img src="/image/area.PNG">
         </div>
         <div class="description">
             <br>
@@ -88,7 +88,7 @@
     <hr>
     <div id="topic">
         <div class="graph">
-            <img src="image/keyword.PNG">
+            <img src="/image/keyword.PNG">
         </div>
         <div class="description">
             <br>
@@ -97,7 +97,7 @@
                  지난 기간 동안 소셜미디어 빅데이터 분석 결과 캠핑 연관어 중 '불멍'이 증가세를 보이고 있습니다. 
                 
         </div>
-        <button type="button" onclick = "location.href = 'searchResult.jsp'">캠핑장 추천 받기</button>
+        <button type="button" onclick = "location.href = '/camp/detail'">캠핑장 추천 받기</button>
     </div>
     
     <footer>

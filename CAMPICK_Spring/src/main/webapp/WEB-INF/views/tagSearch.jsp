@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "java.util.*,com.user.model.*"%>
+    pageEncoding="UTF-8" import = "java.util.*,com.campick.user.model.*"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
      
     <%  UserDto loginUser = (UserDto)session.getAttribute("loginUser");%>
@@ -15,7 +15,7 @@
     <div id="container">
         <header>
             <div id="logo">
-                <a href="main.do">
+                <a href="/">
                     <h1>CAMPICK</h1>
                 </a>
             </div>
@@ -23,12 +23,12 @@
             <c:choose>
             <c:when test="${loginUser==null}">
             <ul>
-              <li><a href="login.jsp">로그인</a></li>
+              <li><a href="/user/login">로그인</a></li>
             </ul>
             </c:when>
             <c:otherwise>
             <ul>
-            <li><a href="userLogout.do">로그아웃</a></li>
+            <li><a href="/user/logout">로그아웃</a></li>
             <li><a href="myPage.jsp">마이페이지</a></li>
             <li style="color:white;"><%=loginUser.getName() %>님</li>
             </ul>
@@ -40,10 +40,10 @@
 
            <nav>
             <ul id="topMenu">
-                <li><a href="search.jsp">캠핑장찾기</a></li>
+                <li><a href="/">캠핑장찾기</a></li>
                 <li><a href="tagSearch.jsp">태그로 찾기</a></li>
                 <li><a href="analysis.jsp">캠핑 예측Pick</a></li>
-                <li><a href="boradList.do">커뮤니티</a></li>
+                <li><a href="/board/list">커뮤니티</a></li>
                 </ul>
             </nav>
     </header>

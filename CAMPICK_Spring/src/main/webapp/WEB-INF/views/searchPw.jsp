@@ -7,12 +7,12 @@
 <head>
     <meta charset="UTF-8">
     <title>CAMPICK</title>
-    <link rel="stylesheet" href="css/searchid.css">
+    <link rel="stylesheet" href="/css/searchid.css">
 </head>
 <body>
     <div id="container">
     <div id="logo">
-        <h1> <a href="main.do">CAMPICK</a></h1>
+        <h1> <a href="/">CAMPICK</a></h1>
     </div>
 <div id="contents">>
     <form id="form" method="post" action="userSearchPW.do">

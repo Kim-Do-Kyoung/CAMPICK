@@ -89,7 +89,12 @@ public class UserDao {
 	public UserDto login(String loginId, String loginPw) {
 		System.out.println("로그인 dao까지 넘어옴~");
 		String sql = "SELECT * FROM USER_TB WHERE ID=? AND PW=?";
-		return jdbcTemplate.queryForObject(sql, new UserDtoMapper(),loginId,loginPw);
+		try {
+			return jdbcTemplate.queryForObject(sql, new UserDtoMapper(),loginId,loginPw);
+		}catch(Exception e) {
+			System.out.println("로그인 실패~!");
+			return null;
+		}
 	}
 	
 	

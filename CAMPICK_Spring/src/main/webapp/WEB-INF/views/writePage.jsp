@@ -15,7 +15,7 @@
     <div id="container">
     <header>
         <div id="logo">
-            <a href="main.do">
+            <a href=/>
                 <h1>CAMPICK</h1>
             </a>
         </div>
@@ -28,7 +28,7 @@
       		    </c:when>
          		<c:otherwise>
           			<ul>
-         				<li><a href="userLogout.do">로그아웃</a></li>
+         				<li><a href="/user/logout">로그아웃</a></li>
       	    			<li><a href="myPage.jsp">마이페이지</a></li>
         					<li style="color:white;">${loginUser.name }님</li>
         		 		</ul>
@@ -39,7 +39,7 @@
 
     <nav>
         <ul id="topMenu">
-            <li><a href="search.jsp">캠핑장찾기</a></li>
+            <li><a href="/">캠핑장찾기</a></li>
             <li><a href="tagSearch.jsp">태그로 찾기</a></li>
             <li><a href="analysis.jsp">캠핑 예측Pick</a></li>
             <li><a href="list">커뮤니티</a></li>

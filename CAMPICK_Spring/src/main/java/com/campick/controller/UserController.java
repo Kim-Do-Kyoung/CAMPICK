@@ -1,5 +1,10 @@
 package com.campick.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +19,13 @@ import com.campick.user.model.UserDto;
 import com.campick.user.service.LoginService;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
 	
 	@Autowired
 	LoginService loginService;
 	
-	@GetMapping("login")
+	@GetMapping("/login")
 	public String goLoginPage(Model model) {
 		System.out.println("login 진입");
 		return "login";
@@ -40,10 +45,15 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping("logout")
-	public String logout(HttpSession session) {
+	@RequestMapping("/logout")
+	public void logout(HttpSession session,HttpServletResponse response) throws IOException {
 		System.out.println("로그아웃");
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+		
 		session.invalidate();
-		return "redirect:/";
+		PrintWriter out = response.getWriter();
+		out.println("<script>alert('로그아웃!'); location.href='/'</script>");
+		out.flush();
 	}
 }

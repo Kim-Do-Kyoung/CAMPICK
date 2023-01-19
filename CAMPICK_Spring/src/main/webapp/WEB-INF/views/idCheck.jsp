@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 중복 체크</title>
-   <script src="js/registerCheck.js"></script>
+   <script src="/js/registerCheck.js"></script>
 </head>
 <body>
 

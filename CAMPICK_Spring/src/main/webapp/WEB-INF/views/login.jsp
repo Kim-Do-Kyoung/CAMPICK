@@ -12,7 +12,7 @@
 <body>
 
     <div id="logo">
-            <h1> <a href="main.do">CAMPICK</a></h1>
+            <h1> <a href="/">CAMPICK</a></h1>
     </div>
     <form class="wrapper" method="post" action="login">
       <h1>환영합니다!</h1>

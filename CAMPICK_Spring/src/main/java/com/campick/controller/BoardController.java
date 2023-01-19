@@ -75,7 +75,7 @@ public class BoardController {
 		return "comunity";
 	}
 	
-	@GetMapping("write")
+	@GetMapping("/write")
 	public String write(Model model) {
 		System.out.println("write get진입");
 		return "writePage";
@@ -137,7 +137,6 @@ public class BoardController {
 		System.out.println("update post진입");
 		
 		final String uploadDir = "C:/Spring_camp/CAMPICK_Spring/CAMPICK_Spring/src/main/webapp/WEB-INF/resources/image";
-//		final String uploadDir2 = "classpath:/src/main/webapp/WEB-INF/resources/image";
 		String imgName = null;
 		for(MultipartFile multipartFile : uploadFile) {
 			imgName = multipartFile.getOriginalFilename();
@@ -169,7 +168,7 @@ public class BoardController {
 		return "redirect:list";
 	}
 	
-	@RequestMapping("comment")
+	@RequestMapping("/comment")
 	public String comment(@RequestParam("reply")String reply, Model model,HttpSession session) throws SQLException {
 		System.out.println("comment post 진입");
 		model.addAttribute("reply", reply);
@@ -177,7 +176,7 @@ public class BoardController {
 		return "redirect:list";
 	}
 	
-	@PostMapping("reComment")
+	@PostMapping("/reComment")
 	public String reComment(/*@RequestParam("bundle_id")int bundle_id,@RequestParam("reply")String reply,*/
 			CommentDto cDto,Model model,HttpSession session) throws SQLException {
 		model.addAttribute("cDto",cDto);
@@ -185,7 +184,7 @@ public class BoardController {
 		return "redirect:list";
 	}
 	
-	@RequestMapping("suggest")
+	@RequestMapping("/suggest")
 	public void suggest(HttpServletRequest request,HttpServletResponse response ,HttpSession session) throws Exception {
 		response.setContentType("text/html; charset=utf-8");
 		request.setCharacterEncoding("UTF-8");

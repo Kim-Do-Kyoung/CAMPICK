@@ -30,7 +30,7 @@
             </c:when>
             <c:otherwise>
              <ul>
-            	<li><a href="userLogout.do">로그아웃</a></li>
+            	<li><a href="/user/logout">로그아웃</a></li>
          	    <li><a href="myPage.jsp">마이페이지</a></li>
            		<li style="color:white;">${loginUser.name }님</li>
            	 </ul>
