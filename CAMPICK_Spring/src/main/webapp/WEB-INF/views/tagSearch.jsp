@@ -41,8 +41,8 @@
            <nav>
             <ul id="topMenu">
                 <li><a href="/">캠핑장찾기</a></li>
-                <li><a href="tagSearch.jsp">태그로 찾기</a></li>
-                <li><a href="analysis.jsp">캠핑 예측Pick</a></li>
+                <li><a href="/tag/search.jsp">태그로 찾기</a></li>
+                <li><a href="/pick/list">캠핑 예측Pick</a></li>
                 <li><a href="/board/list">커뮤니티</a></li>
                 </ul>
             </nav>
@@ -52,7 +52,7 @@
 
         <h2>어떤 캠핑장을 찾으시나요?<br><br>▼</h2>
         
-        <form name="tag_search" method="post" action="tagSearch.do">
+        <form name="tag_search" method="post" action="tagSearch">
             <ul>
                 <li><input type="checkbox" name="tag" value="반려" id="dog"><label for="dog" class="labelAfterCheckBox">#반려견동반</label></li>
                 <li><input type="checkbox" name="tag" value="아이" id="kids"><label for="kids" class="labelAfterCheckBox">#아이들 놀기 좋은</label></li>

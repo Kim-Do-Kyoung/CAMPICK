@@ -28,9 +28,9 @@
         	<nav>
            		<ul id="topMenu">
 	                <li><a href="/">캠핑장찾기</a></li>
-	                <li><a href="tagSearch.html">태그로 찾기</a></li>
-	                <li><a href="analysis.html">캠핑 예측Pick</a></li>
-	                <li><a href="board/list">커뮤니티</a></li>
+	                <li><a href="/tag/search">태그로 찾기</a></li>
+	                <li><a href="/pcik/list">캠핑 예측Pick</a></li>
+	                <li><a href="/board/list">커뮤니티</a></li>
 				</ul>
       	  	</nav>
     	</header>
