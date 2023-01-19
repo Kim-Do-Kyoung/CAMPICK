@@ -1,10 +1,9 @@
 package com.campick.user.service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.campick.user.model.UserDto;
 
 public interface UserService {
 	
-public void execute(HttpServletRequest request, HttpServletResponse response);
+public void execute(UserDto userDto);
 
 }

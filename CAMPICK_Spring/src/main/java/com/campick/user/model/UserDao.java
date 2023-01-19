@@ -54,42 +54,27 @@ public class UserDao {
 	}
 	
 	
-	public void register(UserDto user) {
-		System.out.println("dao까지 넘어옴~~");
-	      
-	      Connection conn = null;
-	      PreparedStatement pstmt = null;
-	      
-	      try {
-	          conn = getConnection();
-	          pstmt = conn.prepareStatement("INSERT INTO USER_TB VALUES(?, ?, ?, ?, ?, ?)");
-	          pstmt.setString(1, user.getId());
-	          pstmt.setString(2, user.getPw());
-	          pstmt.setString(3, user.getName());
-	          pstmt.setString(4, user.getPhone());
-	          pstmt.setString(5, user.getEmail());
-	          pstmt.setString(6, user.getAddr());
-	          
-	          pstmt.executeUpdate();
-	          
-	      }catch(SQLException e) {
-	    	  System.out.println("register 오류!!");
-	    	  e.printStackTrace();
-	      }finally {
-	    	  try {
-	    		  pstmt.close();
-	    		  conn.close();
-	    	  }catch(Exception e2) {
-	    		  e2.printStackTrace();
-	    	  }
-	      }
-		
-	}
 	
-	public UserDto login(String loginId, String loginPw) {
+	public void register(UserDto userDto){
+		 
+		System.out.println("dao까지 넘어옴~~");
+	 
+		String sql = "INSERT INTO USER_TB VALUES(?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql,
+				userDto.getName(),
+				userDto.getPw(),
+				userDto.getName(),
+				userDto.getAddr(),
+				userDto.getPhone(),
+				userDto.getEmail()
+				);
+		}
+	 
+	
+	public UserDto login(String id, String pw) {
 		System.out.println("로그인 dao까지 넘어옴~");
 		String sql = "SELECT * FROM USER_TB WHERE ID=? AND PW=?";
-		return jdbcTemplate.queryForObject(sql, new UserDtoMapper(),loginId,loginPw);
+		return jdbcTemplate.queryForObject(sql, new UserDtoMapper(),id,pw);
 	}
 	
 	

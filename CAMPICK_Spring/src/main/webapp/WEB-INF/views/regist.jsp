@@ -8,8 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <title>CAMPICK</title>
-    <script src="js/registerCheck.js"></script>
-    <link rel="stylesheet" href="css/register.css">
+ <!--    <script src="/js/registerCheck.js"></script> -->
+    <link rel="stylesheet" href="/css/register.css">
  
 </head>
 <body>
@@ -35,7 +35,7 @@
       	  	</nav>
     	</header>
 
-    <form name="joinForm" action="/register">
+    <form name="joinForm" method="post" action="/user/register">
         <div id="registerForm">
         <h1>회원 가입</h1>
         
@@ -45,7 +45,7 @@
             <c:when test="${checkID==null}">
                 <tr>
                     <td>아이디</td>
-                    <td><input type="text" id = "user_id" name="user_id" required placeholder="2글자 이상 12글자 이하" autofocus onkeyup="idCheck()"></td>
+                    <td><input type="text" id = "user_id" name="id" required placeholder="2글자 이상 12글자 이하" autofocus onkeyup="idCheck()"></td>
                   	<td><button type = "button" onclick="id_duplicate()">중복 체크</button></td>  
                     <input type="hidden" id="idCheckResult" value="idNOTOk"/>
                 </tr>
@@ -71,31 +71,31 @@
  			</c:choose>
                 <tr>
                     <td>비밀번호</td>
-                    <td><input type="password" id ="user_pw" name="user_pw" required placeholder="비밀번호 8~12자리 특수기호 포함" onkeyup="pwCheck()"></td>
+                    <td><input type="password" id ="user_pw" name="pw" required placeholder="비밀번호 8~12자리 특수기호 포함" onkeyup="pwCheck()"></td>
 					<td><p id="pwMsg"></p></td>
                 </tr>
  
 
                 <tr>
                     <td>비밀번호 확인</td>
-                    <td><input type="password" id = "user_pw2" name="user_pw2" required onkeyup="pw_duplicate()"></td>
+                    <td><input type="password" id = "user_pw2" name="pw2" required onkeyup="pw_duplicate()"></td>
                		<td><p id="checkMsg"></p></td>
                 </tr>
                 <tr>
                     <td>이름</td>
-                    <td><input type="text" name="user_name" required></td>
+                    <td><input type="text" name="name" required></td>
                 </tr>
                 <tr>
                     <td>주소</td>
-                    <td><input type="text" name="user_addr" required></td>
+                    <td><input type="text" name="addr" required></td>
                 </tr>
                 <tr>
                     <td>이메일</td>
-                    <td><input type="email" name="user_email" required></td>
+                    <td><input type="email" name="email" required></td>
                 </tr>
                 <tr>
                     <td>전화번호</td>
-                    <td><input type="tel" name="user_tel" required></td>
+                    <td><input type="tel" name="phone" required></td>
                 </tr>
             </table>
         </fieldset>
@@ -164,7 +164,8 @@
       </div>
        -->
   <div id = "submit">
-        <button type="button" onclick="register()">가입하기</button>
+ 	 	<button type="submit">가입하기</button> 
+       <!--  <button type="button" onclick="register()">가입하기</button> -->
         <button type="reset" value="다시 작성">다시작성</button>
   </div>
     </form>

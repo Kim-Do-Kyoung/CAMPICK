@@ -26,12 +26,13 @@
             <c:when test="${loginUser==null}">
             <ul>
               <li><a href="/user/login">로그인</a></li>
+              <li><a href="/user/registerform">회원가입</a></li>
             </ul>
             </c:when>
             <c:otherwise>
             <ul>
             <li><a href="/user/logout">로그아웃</a></li>
-            <li><a href="myPage.jsp">마이페이지</a></li>
+            <li><a href="/user/mypage">마이페이지</a></li>
             <li style="color:white;">${loginUser.name }님</li>
             </ul>
             </c:otherwise>

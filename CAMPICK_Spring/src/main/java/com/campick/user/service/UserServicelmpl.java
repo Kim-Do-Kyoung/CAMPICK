@@ -1,21 +1,20 @@
 package com.campick.user.service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.user.model.UserDao;
-import com.user.model.UserDto;
+import com.campick.user.model.UserDao;
+import com.campick.user.model.UserDto;
 
+@Service
 public class UserServicelmpl implements UserService{
-	private UserDao userDao;
 	
-	public UserServicelmpl() {
-		userDao=UserDao.getInstance();
-	}
+	@Autowired
+	UserDao userDao;
+	
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) {
+	public void execute(UserDto userDto) {
 		System.out.println("service까지 넘어옴!!");
-		UserDto regUser = (UserDto)request.getAttribute("regUser");
-		userDao.register(regUser);
+		userDao.register(userDto);
 	}
 }
