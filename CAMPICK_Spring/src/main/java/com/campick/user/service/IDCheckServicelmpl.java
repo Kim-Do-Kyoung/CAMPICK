@@ -1,22 +1,20 @@
 package com.campick.user.service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.user.model.UserDao;
+import com.campick.user.model.UserDao;
 
+@Service
 public class IDCheckServicelmpl implements IDCheckService {
 
-	private UserDao userDao;
-	
-	public IDCheckServicelmpl() {
-		userDao = UserDao.getInstance();
-	}
+	@Autowired
+	UserDao userDao;
+
 	@Override
-	public int execute(HttpServletRequest request, HttpServletResponse response) {
-		String checkID = (String) request.getAttribute("checkID");
-		System.out.println("service로 넘어온 id는 "+checkID);
-		int result = userDao.idCheck(checkID);
+	public int execute(String user_id) {
+	//	System.out.println("service로 넘어온 id는 "+checkID);
+		int result = userDao.idCheck(user_id);
 		return result;
 	}
 }

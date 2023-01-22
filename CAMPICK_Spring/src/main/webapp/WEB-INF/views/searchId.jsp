@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import = "java.util.*,com.campick.user.model.*"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
-    <%   String searchUser = (String)request.getAttribute("searchUser"); %>
+<%--     <%   String searchUser = (String)request.getAttribute("searchUser"); %> --%>
     
 <!DOCTYPE html>
 <html lang="ko">
@@ -17,7 +17,7 @@
      	   <h1> <a href="main.do">CAMPICK</a></h1>
     	</div>
 		<div id="contents">
-    		<form id="form" method = "post" action="userSearchID.do">
+    		<form id="form" method = "post" action="searchID">
        		 <h2>ID찾기</h2>
        		  <c:choose>
         		<c:when test="${searchUser==null}">
@@ -36,10 +36,10 @@
             	<c:otherwise>
             	<ul>
             	<li>당신의 ID는</li>
-            	<li><b><font color=green><%=searchUser %></font></b>입니다.</li>
+            	<li><b><font color=green>${searchUser.id}</font></b>입니다.</li>
             	</ul>
             	
-            	<button type="button" onclick = "location.href = 'login.jsp'">로그인 하러가기</button>
+            	<button type="button" onclick = "location.href = 'login'">로그인 하러가기</button>
             	
             	</c:otherwise>
         	  </c:choose>

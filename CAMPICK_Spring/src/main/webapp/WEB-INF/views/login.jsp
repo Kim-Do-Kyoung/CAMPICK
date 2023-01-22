@@ -23,8 +23,8 @@
             <div id="loginInform">
                 <ul>
                     <li><a href="registerform">회원가입</a></li>
-                    <li><a href="searchId.jsp">ID 찾기</a></li>
-                    <li><a href="searchPw.jsp">PW 찾기</a></li>
+                    <li><a href="searchId">ID 찾기</a></li>
+                    <li><a href="searchPw">PW 찾기</a></li>
                 </ul>
             </div>
             <button type="button" onclick="loginPro()"> LOGIN </button>
@@ -44,14 +44,6 @@
     	const id = $("#userid").val();
     	const pw = $("#password").val();
     	
-    	if(!id){
-    		alert("아이디를 입력해 주세요.");
-    		return false;
-    	}
-    	if(!pw){
-    		alert("비밀번호를 입력해 주세요");
-    		return false;
-    	}
 
     	//const id = document.getElementById("userid");
     	//const pw = document.getElementById("password");
@@ -61,9 +53,9 @@
     	}else if(!pw){
     		alert("비밀번호를 입력해 주세요.")
     	}else{
-    		loginForm.method="post";
+     		loginForm.method="post";
     		loginForm.action="login";
-    		loginForm.submit();
+    		loginForm.submit(); 
     	}
     };
     

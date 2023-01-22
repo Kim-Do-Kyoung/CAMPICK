@@ -23,7 +23,7 @@
                 <c:choose>
 		           	 <c:when test="${loginUser==null}">
 			           	 <ul>
-	              		 	<li><a href="login.jsp">로그인</a></li>
+	              		 	<li><a href="/user/login">로그인</a></li>
 	         		  	 </ul>
          		     </c:when>
             		<c:otherwise>
@@ -76,8 +76,8 @@
         </div>
         <hr style="border: solid 2px #eee;" width="90%">
         <div id="writecontents">
-        	<c:set var="borad_img" value="${bDto.board_img }"></c:set>
-            <c:if test="${borad_img != null}">
+        	<c:set var="board_img" value="${bDto.board_img }"></c:set>
+            <c:if test="${board_img != null}">
 	            <img src="/image/${bDto.board_img }" alt="이미지" width="500px" height="350px">
             </c:if>
             <p>
@@ -103,7 +103,7 @@
         </div>
         <hr style="border: solid 2px #eee;" width="90%">
         <div id="datgle">
-        	<c:forEach var="comment" items="${commentList }" varStatus="status">
+        	<c:forEach var="comment" items="${cList }" varStatus="status">
 		        <c:if test="${comment.depth == 0}">
 	        	<table>
 	        		<tr>
@@ -123,7 +123,7 @@
 	        	<c:if test ="${comment.depth == 1 }">
         	      <table>
 	        		<tr>
-		        			<td width=70px rowspan="2"><img src="image/recomment.png" width=100% height=100%></td>
+		        			<td width=70px rowspan="2"><img src="/image/recomment.png" width=100% height=100%></td>
 		        			<td rowspan="2" align="center" width = "70px" style="border-right: 1px solid #eee ">${comment.name }</td>
 		        			<td colspan="4" class="ganguk" style="border-bottom: 1px solid #eee">${comment.reply }</td>
 		        		</tr>
@@ -134,12 +134,12 @@
 	        	</c:if>
 <!-- 	        	대댓글 입력하는 곳 -->
 		        <div class="insertReComment">
-		        	<form action = "boradRecomment.do?bundle_id=${comment.bundle_id }" name=form4 method=post>
+		        	<form action = "reComment?bundle_id=${comment.bundle_id }" name=form4 method=post>
 		        		<c:choose>
 		        			<c:when test="${loginUser != null }">
 			        			<table>
 				        			<tr>
-				        				<td width=70px><img src="image/recomment.png" width=100% height=100%></td>
+				        				<td width=70px><img src="/image/recomment.png" width=100% height=100%></td>
 					        			<td width = "70px">${loginUser.name }</td>
 				        				<td><textarea rows="3" placeholder="댓글을 입력해주세요" name="reply" required></textarea></td>
 				        				<td width=30px><button>등록</button></td>
@@ -153,7 +153,7 @@
        </div>
 <!--    댓글 등록구역	 -->
         <div id="insertComment">
-        	<form action="boradComment.do" name=form3 method=post>
+        	<form action="comment" name=form3 method=post>
         	<c:choose>
             	<c:when test="${loginUser != null }">
 	        	<table>
@@ -178,18 +178,18 @@
             var check = confirm("삭제 하시겠습니까?");
             if(check === true){
                 alert('삭제 되었습니다.');
-                document.location.href="boradDelete.do";
+                document.location.href="delete";
             }
         }
         function w_edit(){
-        	document.location.href="boradEdit.do";
+        	document.location.href="update";
         }
         function togleReComment(index){
         	var select = document.querySelectorAll('.insertReComment');
        		select[index].style.display = 'block';
         }
         function w_like(){
-        	document.location = "boradSuggest.do";
+        	document.location = "suggest";
         }
     </script>
 </body>

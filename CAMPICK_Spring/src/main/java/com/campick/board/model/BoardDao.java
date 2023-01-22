@@ -20,7 +20,6 @@ public class BoardDao {
 
 		@Override
 		public BoardDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-			System.out.println("db mapRow 들어옴");
 			BoardDto bDto = new BoardDto();
 			bDto.setBoard_id(rs.getInt("board_id"));
 			bDto.setBoard_visit(rs.getInt("board_visit"));
@@ -53,105 +52,38 @@ public class BoardDao {
 	
 	//게시판 글 상세 페이지 정보를 불러오는 메세지
 	public BoardDto getDB(int board_id) throws SQLException {
+		increaseVisit(board_id);
 		String sql = "select board_id,board_visit,board_suggestion,board_date,camp_name,to_char(board_period_first,'YYYY-MM-DD') as \"board_period_first\",to_char(board_period_second,'YYYY-MM-DD')as \"board_period_second\",board_name,name,board_text,board_img from board where board_id=?";
 		return jdbcTemplate.queryForObject(sql, new BoardDtoMapper(),board_id);
 	}
-//	//게시판 조회수 올려주는 메소드
-//	public void increaseVisit(int borad_id) throws SQLException {
-//		Connection connection = null;
-//		PreparedStatement pstmt = null;
-//		String sql = "update borad set borad_visit=borad_visit+1 where borad_id="+borad_id;
-//		try {
-//			connection = getConnection();
-//			pstmt = connection.prepareStatement(sql);
-//			pstmt.executeUpdate(sql);
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			connection.close();
-//			pstmt.close();
-//		}
-//	}
-//	//게시판 수정 메소드
-//	public boolean updateDB(int id,BoradDto boradDto) throws SQLException {
-//		
-//		Connection connection = null;
-//		PreparedStatement pstmt = null;
-//		
-//		String sql = "update borad set borad_name=?,camp_name=?,borad_period_first=?,borad_period_second=?,borad_text=?,borad_img=? where borad_id="+id;
-//		try {
-//			connection = getConnection();
-//			pstmt = connection.prepareStatement(sql);
-//			pstmt.setString(1,boradDto.getBorad_name());
-//			pstmt.setString(2,boradDto.getCamp_name());
-//			pstmt.setString(3,boradDto.getBorad_period_first());
-//			pstmt.setString(4,boradDto.getBorad_period_second());
-//			pstmt.setString(5,boradDto.getBorad_text());
-//			pstmt.setString(6,boradDto.getBorad_img());
-//			pstmt.executeUpdate();
-//		}catch(SQLException e) {
-//			e.printStackTrace();
-//			return false;
-//		}finally {
-//			connection.close();
-//			pstmt.close();
-//		}
-//		return true;
-//	}
-//	//게시판 삭제 메소드
-//	public boolean deleteDB(int borad_id) throws SQLException {
-//		Connection connection = null;
-//		PreparedStatement pstmt = null;
-//		
-//		String sql = "delete from borad where borad_id="+borad_id;
-//		
-//		try {
-//			connection = getConnection();
-//			pstmt = connection.prepareStatement(sql);
-//			pstmt.executeUpdate();
-//		}catch(SQLException e) {
-//			e.printStackTrace();
-//		}finally {
-//			connection.close();
-//			pstmt.close();
-//		}
-//		return true;
-//	}
+	//게시판 조회수 올려주는 메소드
+	private void increaseVisit(int board_id) throws SQLException {
+		String sql = "update board set board_visit=board_visit+1 where board_id=?";
+		jdbcTemplate.update(sql,board_id);
+	}
+	//게시판 수정 메소드
+	public void updateDB(String bn,String cn,String bpf,String bps,String bt,String bi,int b_id) throws SQLException {
+		String sql = "update board set board_name=?,camp_name=?,board_period_first=?,board_period_second=?,board_text=?,board_img=? where board_id=?";
+		jdbcTemplate.update(sql, bn,cn,bpf,bps,bt,bi,b_id);
+	}
+	//게시판 삭제 메소드
+	public void deleteDB(int board_id) throws SQLException {
+		String sql = "delete from board where board_id=?";
+		jdbcTemplate.update(sql,board_id);
+	}
 	//게시판 글 갯수 반환해주는 메소드
 	public int getDBcount() throws SQLException {
 		String sql = "SELECT count(*) from board";
 		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
-//	
-//	public void increaseSuggest(int borad_id) throws SQLException {
-//		Connection connection = null;
-//		PreparedStatement pstmt = null;
-//		String sql = "update borad set borad_suggestion=borad_suggestion+1 where borad_id="+borad_id;
-//		try {
-//			connection = getConnection();
-//			pstmt = connection.prepareStatement(sql);
-//			pstmt.executeUpdate(sql);
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			connection.close();
-//			pstmt.close();
-//		}
-//	}
-//	
-//	public void decreaseSuggest(int borad_id) throws SQLException {
-//		Connection connection = null;
-//		PreparedStatement pstmt = null;
-//		String sql = "update borad set borad_suggestion=borad_suggestion-1 where borad_id="+borad_id;
-//		try {
-//			connection = getConnection();
-//			pstmt = connection.prepareStatement(sql);
-//			pstmt.executeUpdate(sql);
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			connection.close();
-//			pstmt.close();
-//		}
-//	}
+	
+	public void increaseSuggest(int board_id) throws SQLException {
+		String sql = "update board set board_suggestion=board_suggestion+1 where board_id=?";
+		jdbcTemplate.update(sql,board_id);
+	}
+	
+	public void decreaseSuggest(int board_id) throws SQLException {
+		String sql = "update board set board_suggestion=board_suggestion-1 where board_id=?";
+		jdbcTemplate.update(sql,board_id);
+	}
 }

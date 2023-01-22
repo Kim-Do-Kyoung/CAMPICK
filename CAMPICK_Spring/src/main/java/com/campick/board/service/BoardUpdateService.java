@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.ui.Model;
+
 public interface BoardUpdateService {
-	public boolean execute(HttpServletRequest request, HttpServletResponse response) throws SQLException;
+	public void execute(Model model) throws SQLException;
 }

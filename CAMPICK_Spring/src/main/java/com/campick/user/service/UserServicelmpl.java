@@ -14,7 +14,7 @@ public class UserServicelmpl implements UserService{
 	
 	@Override
 	public void execute(UserDto userDto) {
-		System.out.println("service까지 넘어옴!!");
+		System.out.println("가입 service");
 		userDao.register(userDto);
 	}
 }

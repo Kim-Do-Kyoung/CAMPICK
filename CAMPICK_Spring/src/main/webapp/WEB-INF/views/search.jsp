@@ -32,7 +32,7 @@
             <c:otherwise>
             <ul>
             <li><a href="/user/logout">로그아웃</a></li>
-            <li><a href="/user/mypage">마이페이지</a></li>
+            <li><a href="/user/mypage?id=${loginUser.id}">마이페이지</a></li>
             <li style="color:white;">${loginUser.name }님</li>
             </ul>
             </c:otherwise>
@@ -46,7 +46,7 @@
             
         <nav>
             <ul id="topMenu">
-                <li><a href="search.jsp">캠핑장찾기</a></li>
+                <li><a href="/">캠핑장찾기</a></li>
                 <li><a href="tagSearch.jsp">태그로 찾기</a></li>
                 <li><a href="analysis.jsp">캠핑 예측Pick</a></li>
                 <li><a href="board/list">커뮤니티</a></li>
@@ -57,7 +57,7 @@
         <div id="contents">
             <h2>내게 맞는 캠핑장 검색하기</h2>
             <fieldset>
-               <form id="campSearch" method="post" name="form1" action="campList.do">
+               <form id="campSearch" method="post" name="form1" action="camp/list">
                     <h2>어디로 떠날까요?</h2>
                     <p>
                         <label>캠핑장 이름</label>
@@ -117,7 +117,7 @@
             </fieldset>
         <div id="popup" class="hide">
             <div class="content">
-                <form action="campList.do" method="post" id="popupform">
+                <form action="camp/list" method="post" id="popupform">
                     <h2>원하는 정보를 상세하게 입력해 보세요!</h2>
                     <ul>
                     	<h3>캠핑지역</h3>

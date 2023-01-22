@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
       <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-     <%   String searchPw = (String)request.getAttribute("searchPw"); %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>CAMPICK</title>
-    <link rel="stylesheet" href="css/searchid.css">
+    <link rel="stylesheet" href="/css/searchid.css">
 </head>
 <body>
     <div id="container">
@@ -15,7 +15,7 @@
         <h1> <a href="main.do">CAMPICK</a></h1>
     </div>
 <div id="contents">>
-    <form id="form" method="post" action="userSearchPW.do">
+    <form id="form" method="post" action="searchPw">
         <h2>비밀번호 찾기</h2>
         
         <c:choose>
@@ -41,10 +41,10 @@
         <c:otherwise>
         <ul>
           <li>당신의 PW는</li>
-          <li><b><font color=green><%=searchPw %></font></b>입니다.</li>
+          <li><b><font color=green>${searchPw.pw}</font></b>입니다.</li>
         </ul>
             	
-        <button type="button" onclick = "location.href = 'login.jsp'">로그인 하러가기</button>
+        <button type="button" onclick = "location.href = 'login'">로그인 하러가기</button>
         </c:otherwise>
         
         </c:choose>
