@@ -7,5 +7,5 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface IDCheckService {
 	
-	public int execute(HttpServletRequest request, HttpServletResponse response);
+	public int execute(String user_id);
 }

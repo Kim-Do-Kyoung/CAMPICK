@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>CAMPICK</title>
-    <script src="/js/registerCheck.js"></script>
+
     <link rel="stylesheet" href="/css/register.css">
  
 </head>
@@ -35,144 +35,156 @@
       	  	</nav>
     	</header>
 
-    <form name="joinForm" action="/register">
+    <form name="joinForm">
         <div id="registerForm">
         <h1>회원 가입</h1>
         
         <fieldset>
             <table>
-            <c:choose>
-            <c:when test="${checkID==null}">
                 <tr>
                     <td>아이디</td>
-                    <td><input type="text" id = "user_id" name="user_id" required placeholder="2글자 이상 12글자 이하" autofocus onkeyup="idCheck()"></td>
-                  	<td><button type = "button" onclick="id_duplicate()">중복 체크</button></td>  
-                    <input type="hidden" id="idCheckResult" value="idNOTOk"/>
+                    <td><input type="text" id = "user_id" name="id" required placeholder="2글자 이상 12글자 이하" autofocus onchange="idCheck()"></td>
                 </tr>
                 <tr>
                 	<td></td>
               		<td height="10px"><p id ="idCheckMsg"></p></td>
-              		<td></td>
                 </tr>
-             </c:when>
-             <c:otherwise>
-               <tr>
-                    <td>아이디</td>
-                    <td><input type="text" value = "${checkID}" id = "user_id" name="user_id" required readonly style="color:gray;"></td>
-                  	<td><button type = "button" onclick="id_edit()">ID 수정</button></td>  
-                    <input type="hidden" id="idCheckResult" value="idOk"/>
-                </tr>
-                <tr>
-                	<td></td>
-              		<td colspan="2" height="10px">버튼을 통해 수정 가능!</td>
-              		
-                </tr>
-             </c:otherwise>
- 			</c:choose>
+
                 <tr>
                     <td>비밀번호</td>
-                    <td><input type="password" id ="user_pw" name="user_pw" required placeholder="비밀번호 8~12자리 특수기호 포함" onkeyup="pwCheck()"></td>
-					<td><p id="pwMsg"></p></td>
+                    <td><input type="password" id ="user_pw" name="pw" required placeholder="비밀번호 8~12자리 특수기호 포함" onkeyup="pwCheck()"></td>
+                </tr>
+              	<tr>
+                	<td></td>
+              		<td><p id="pwMsg"></p></td>
                 </tr>
  
 
                 <tr>
                     <td>비밀번호 확인</td>
-                    <td><input type="password" id = "user_pw2" name="user_pw2" required onkeyup="pw_duplicate()"></td>
+                    <td><input type="password" id = "user_pw2" name="pw2" required onkeyup="pw_duplicate()"></td>
                		<td><p id="checkMsg"></p></td>
                 </tr>
                 <tr>
                     <td>이름</td>
-                    <td><input type="text" name="user_name" required></td>
+                    <td><input type="text" name="name" required></td>
                 </tr>
                 <tr>
                     <td>주소</td>
-                    <td><input type="text" name="user_addr" required></td>
+                    <td><input type="text" name="addr" required></td>
                 </tr>
                 <tr>
                     <td>이메일</td>
-                    <td><input type="email" name="user_email" required></td>
+                    <td><input type="email" name="email" required></td>
                 </tr>
                 <tr>
                     <td>전화번호</td>
-                    <td><input type="tel" name="user_tel" required></td>
+                    <td><input type="tel" name="phone" required></td>
                 </tr>
             </table>
         </fieldset>
         </div>
-<!--         <div id="favoriteForm">
-        <h1>취향 선택 (필수x)</h1>
-        <fieldset>
-            <table>
-                <tr>
-                    <td colspan="6"> <span><b>■선호하는 캠핑 트렌드?</b></span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="trand" value="camping">캠핑</td>
-                    <td><input type="checkbox" name="trand" value="caraban">카라반</td>
-                    <td><input type="checkbox" name="trand" value="glamping">글램핑</td>
-                    <td><input type="checkbox" name="trand" value="carbak">차박</td>
-                </tr>
-                <tr></tr>
-                <tr>
-                    <td colspan="6"><span><b>■선호하는 캠핑 취향?</b></span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="trand" value="camping">해변</td>
-                    <td><input type="checkbox" name="trand" value="camping">섬</td>
-                    <td><input type="checkbox" name="trand" value="camping">산</td>
-                    <td><input type="checkbox" name="trand" value="camping">숲</td>  
-                    <td><input type="checkbox" name="trand" value="camping">계곡</td>
-                    <td><input type="checkbox" name="trand" value="camping">강</td>
-                </tr>
-                <tr>   
-                    <td><input type="checkbox" name="trand" value="camping">호수</td>
-                    <td><input type="checkbox" name="trand" value="camping">도심</td>
-                </tr>
-                <tr>
-                    <td colspan="6"><span><b>■선호하는 바닥형태?</b></span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="trand" value="camping">잔디</td>
-                    <td><input type="checkbox" name="trand" value="camping">데크</td>
-                    <td><input type="checkbox" name="trand" value="camping">파쇄석</td>
-                    <td><input type="checkbox" name="trand" value="camping">자갈</td>
-                    <td><input type="checkbox" name="trand" value="camping">맨흙</td>
-                </tr>
-                <tr>
-                    <td colspan="6"><span><b>■선호하는 테마?</b></span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="trand" value="camping">일출명소</td>
-                    <td><input type="checkbox" name="trand" value="camping">일몰명소</td>
-                    <td><input type="checkbox" name="trand" value="camping">수상레저</td>
-                    <td><input type="checkbox" name="trand" value="camping">항공레저</td>
-                    <td><input type="checkbox" name="trand" value="camping">스키</td>
-                    <td><input type="checkbox" name="trand" value="camping">낚시</td>
-                </tr>
-                <tr>  
-                    <td><input type="checkbox" name="trand" value="camping">액티비티</td> 
-                    <td><input type="checkbox" name="trand" value="camping">봄꽃여행</td>
-                    <td><input type="checkbox" name="trand" value="camping">물놀이</td>
-                    <td><input type="checkbox" name="trand" value="camping">가을단풍명소</td>
-                    <td><input type="checkbox" name="trand" value="camping">겨울눈꽃명소</td>
-                    <td><input type="checkbox" name="trand" value="camping">걷기길</td> 
-                </tr>
-            </table>
-    
-        </fieldset>
-      </div>
-       -->
+
   <div id = "submit">
-        <button type="button" onclick="register()">가입하기</button>
+ 	 <!-- 	<button type="submit">가입하기</button>  -->
+     	<button type="button" onclick="register()">가입하기</button>
         <button type="reset" value="다시 작성">다시작성</button>
   </div>
     </form>
     </div>
 
     <footer>
-
     </footer>
+    
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script> 
+var idCheckResult=false;
 
+function idCheck() {
+	const id =  $('#user_id').val();
+	const idCheckMsg = document.getElementById("idCheckMsg");
+	const idPattern = /^[A-Za-z0-9]{4,12}$/;
+	if(idPattern.test(id)){
+	 $.ajax({
+		 url:"/user/idCheck",
+		 method:"GET",
+		 dataType:"text",
+		 data:{
+			 user_id:id
+		 },
+		 success:
+		function(data){
+			 if(data=="ok"){
+				idCheckMsg.style.color = "#134f2c";
+				idCheckMsg.innerText = "사용 가능한 id입니다.";
+				idCheckResult=true;
+				alert(idCheckResult);
+			}
+			if(data=="fail"){
+				idCheckMsg.style.color = "#D1433A";
+				idCheckMsg.innerText = "이미 사용중인 ID입니다.";
+				idCheckResult=false;
+				alert(idCheckResult);
+			}
+ 		 },
+		 error:
+			 function(){
+			 alert('에러남');
+		 }
+	 });
+	}else{
+		idCheckMsg.style.color = "#D1433A";
+		idCheckMsg.innerText = "4~12자 이내의 대/소문자와 숫자";
+		idCheckResult=false;
+		alert(idCheckResult);
+	}
+}
+
+
+function pw_duplicate(){
+	
+	const pw1 = document.getElementById("user_pw");
+	const pw2 = document.getElementById("user_pw2");
+	const checkMsg = document.getElementById("checkMsg");
+	if(pw1.value==pw2.value){
+		checkMsg.style.color = "#134f2c";
+		checkMsg.innerText = "OK!";
+        return true;
+	} else{
+		checkMsg.style.color = "#D1433A";
+		checkMsg.innerText = "X";   
+	}
+}
+
+function pwCheck(){
+   const password =  document.getElementById("user_pw");
+   const pwMsg = document.getElementById("pwMsg");
+   const pattern = /^.*(?=^.{8,12}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/; // 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식 ( 3 가지 조합)
+     
+     if(pattern.test(password.value)){
+        pwMsg.style.color = "#134f2c";
+        pwMsg.innerText = "사용 가능한 비밀번호입니다.";
+         return true;
+     }
+     else{
+        pwMsg.style.color = "#D1433A";
+        pwMsg.innerText = "8~12자리의 특수문자/영문자/숫자 포함";   
+         
+   }
+}
+
+function register(){
+	if(idCheckResult==true){
+		joinForm.method="post";
+		joinForm.action="/user/register";
+		joinForm.submit();
+	}else{
+		alert("id를 다시 확인해 주세요.");
+	}
+}
+
+   
+</script>
 </body>
 </html>

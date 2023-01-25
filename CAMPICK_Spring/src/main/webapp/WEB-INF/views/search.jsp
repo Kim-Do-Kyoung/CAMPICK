@@ -26,12 +26,13 @@
             <c:when test="${loginUser==null}">
             <ul>
               <li><a href="/user/login">로그인</a></li>
+              <li><a href="/user/registerform">회원가입</a></li>
             </ul>
             </c:when>
             <c:otherwise>
             <ul>
             <li><a href="/user/logout">로그아웃</a></li>
-            <li><a href="myPage.jsp">마이페이지</a></li>
+            <li><a href="/mypage/zzimlist?id=${loginUser.id}">마이페이지</a></li>
             <li style="color:white;">${loginUser.name }님</li>
             </ul>
             </c:otherwise>
@@ -56,7 +57,7 @@
         <div id="contents">
             <h2>내게 맞는 캠핑장 검색하기</h2>
             <fieldset>
-               <form id="campSearch" method="post" name="form1" action="camp/list">
+               <form id="campSearch" method="post" name="form1" action="/camp/list">
                     <h2>어디로 떠날까요?</h2>
                     <p>
                         <label>캠핑장 이름</label>

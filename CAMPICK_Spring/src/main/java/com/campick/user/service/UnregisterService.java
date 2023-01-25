@@ -7,6 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface UnregisterService {
 	
-	public void execute(HttpServletRequest request, HttpServletResponse response);
+	public void execute(String deletID);
 
 }

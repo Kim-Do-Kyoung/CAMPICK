@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.campick.paging.PagingVO;
+
 @Repository
 public class BoardDao {
 	
@@ -85,5 +87,16 @@ public class BoardDao {
 	public void decreaseSuggest(int board_id) throws SQLException {
 		String sql = "update board set board_suggestion=board_suggestion-1 where board_id=?";
 		jdbcTemplate.update(sql,board_id);
+	}
+	
+	//마이페이지 글 리스트 및 카운트
+	public ArrayList<BoardDto> myWriteList(String name, PagingVO vo){
+		String sql="select * from (select rownum rn, a.* from (select b.* from board b where name=? order by board_id desc) a)where rn >=? and rn<=?";
+		return (ArrayList<BoardDto>) jdbcTemplate.query(sql, new BoardDtoMapper(), name, vo.getStart(), vo.getEnd());
+	}
+	
+	public int getMylist(String name) throws SQLException{
+		String sql = "SELECT count(*) from board where name=?";
+		return jdbcTemplate.queryForObject(sql, Integer.class, name);
 	}
 }

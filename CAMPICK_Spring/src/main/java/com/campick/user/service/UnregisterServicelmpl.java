@@ -1,23 +1,21 @@
 package com.campick.user.service;
 
-import java.sql.SQLException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.user.model.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.campick.user.model.UserDao;
+
+@Service
 public class UnregisterServicelmpl implements UnregisterService {
+
+	@Autowired
+	UserDao userDao;
 	
-	private UserDao userDao;
-	
-	public UnregisterServicelmpl(){
-		userDao = UserDao.getInstance();
-	}
-	
-	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		String deletID = (String)request.getAttribute("deletID");
+	public void execute(String deletID) {
+		/* String deletID = (String)request.getAttribute("deletID"); */
 		userDao.unregister(deletID);
 	}
 	

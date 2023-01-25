@@ -4,7 +4,7 @@
      
     <% 
     UserDto loginUser = (UserDto)session.getAttribute("loginUser");
-  	session.setAttribute("deletID", loginUser.getId());
+
     %>
     
 <!DOCTYPE html>
@@ -32,7 +32,7 @@
             <c:otherwise>
             	<ul>
            	 	<li><a href="/user/logout">로그아웃</a></li>
-           		<li><a href="myPage.jsp">마이페이지</a></li>
+           		<li><a href="/user/mypage?id=${loginUser.id}">마이페이지</a></li>
            		<li style="color:white;"><%=loginUser.getName() %>님</li>
            		</ul>
             </c:otherwise>
@@ -62,7 +62,7 @@
                     <input type="radio" id="select2" name="side_menu"><label for="select2">캠핑장 찜 리스트</label>
                 </li>
             </ul>
-            <form name="unregister" method="post">
+            <form name="unregister">
                 <button onclick="exit()">탈퇴하기</button>
             </form>
         </div>
@@ -94,7 +94,26 @@
                         </table>
                     </li>
                 </ul>
-                 </c:forEach>  
+                 </c:forEach>
+                 	
+	<div style="display: block; text-align: center;">		
+		<c:if test="${paging.startPage != 1 }">
+			<a href="/user/mypage?id=${loginUser.id}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<b>${p }</b>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<a href="/user/mypage?id=${loginUser.id}&nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.endPage != paging.lastPage}">
+			<a href="/user/mypage?id=${loginUser.id}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+		</c:if>
+	</div>
  
             </div>
             
@@ -111,7 +130,8 @@
         	
         	if(result){
         		var unregister = document.unregister;
-        		unregister.action ="userUnregister.do";
+        		unregister.method="post";
+        		unregister.action ="/user/unregister?id=${loginUser.id}";
         		//unregister.submit();
         	}
         }

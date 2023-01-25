@@ -34,7 +34,7 @@
            <c:otherwise>
              <ul>
             	<li><a href="/user/logout">로그아웃</a></li>
-         	    <li><a href="mypage.do">마이페이지</a></li>
+         	    <li><a href="/mypage/zzimlist?id=${loginUser.id}">마이페이지</a></li>
            		<li style="color:white;"><%=loginUser.getName() %>님</li>
            	 </ul>
            </c:otherwise>
@@ -80,13 +80,13 @@
 	      </c:if>
           <div class="campinfo">
             <div class="campinfo_head">
-              <a href="detail?camp_id=${tagDto.camp_id}">${tagDto.camp_name}</a>
+              <a href="detail?camp_id=${tagDto.camp_id}&addr=${tagDto.addr}">${tagDto.camp_name}</a>
               <div class="wishlist">
                 <c:choose>
                   <c:when test="${loginUser==null}">
         	 		 </c:when>
          		  <c:otherwise>
-                    <a href="zzim.do?camp_id=${tagDto.camp_id}&user_id=${loginUser.id}"><img src="/image/wishlist.png" id="jjim"></a>
+                    <a href="javascript:zzim(${tagDto.camp_id});"><img src="/image/wishlist.png" id="zzim"></a> 
                   </c:otherwise>
                 </c:choose>
               </div>
@@ -172,15 +172,43 @@
     </footer>
     </div>
     
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   
+ 
     <script>
+    function zzim(camp_id){
+   	 alert(camp_id);
+    	 $.ajax({
+   		 url:"/mypage/zzim",
+   		 method:"GET",
+   		 dataType:"text",
+   		 data:{
+   			 user_id:'${loginUser.id}',
+   			 camp_id: camp_id
+   		 },
+   		 success:
+   		function(data){
+   			 if(data=="ok"){
+   			 alert('찜 list에 추가되었습니다.');
+   			 }
+   			 if(data=="fail"){
+   				 alert('이미 찜한 캠핑장입니다.')
+   			 }
+    		 },
+   		 error:
+   			 function(){
+   			 alert('에러남');
+   		 }
+   	 });
+       }
+       
     
-    function jjim(){
+/*     function jjim(){
 const jjim = document.getElementById("jjim");
 jjim.addEventListener('click',function(event){
 	document.location.href = "jjim.do?camp_name=${dto.camp_name}";
 });
     }
-    
+     */
     </script>
     
 </body>

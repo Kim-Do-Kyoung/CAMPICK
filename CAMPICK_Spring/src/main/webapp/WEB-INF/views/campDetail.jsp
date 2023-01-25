@@ -28,7 +28,7 @@
            <c:otherwise>
              <ul>
             	<li><a href="/user/logout">로그아웃</a></li>
-         	    <li><a href="myPage.jsp">마이페이지</a></li>
+         	    <li><a href="/mypage/zzimlist?id=${loginUser.id}">마이페이지</a></li>
            		<li style="color:white;"><%=loginUser.getName() %>님</li>
            	 </ul>
            </c:otherwise>
@@ -62,7 +62,7 @@
             <label for="tab2">위치정보</label>
             <input id="tab3" type="radio" name="tabs">
             <label for="tab3">날씨정보</label>
-         
+
             <section id="content1" style="margin-bottom:20px;">
               <c:if test="${giDto != null }">
                 <div class="carousel-wrapper">
@@ -140,7 +140,50 @@
 				</iframe>
             </section>
             <section id="content3" style="margin-bottom:20px;">
-                날씨정보
+                06:00 발표 기준 5일간 날씨 예보
+            <table id="weather">
+
+            	<tr>
+            		<th>구분</th>
+            		<td><c:out value="${weatherList['monthValue']}"/>월 <c:out value="${weatherList['dayOfMonth']+1}"/>일</td>
+            		<td><c:out value="${weatherList['monthValue']}"/>월 <c:out value="${weatherList['dayOfMonth']+2}"/>일</td>
+            		<td><c:out value="${weatherList['monthValue']}"/>월 <c:out value="${weatherList['dayOfMonth']+3}"/>일</td>
+            		<td><c:out value="${weatherList['monthValue']}"/>월 <c:out value="${weatherList['dayOfMonth']+4}"/>일</td>
+            		<td><c:out value="${weatherList['monthValue']}"/>월 <c:out value="${weatherList['dayOfMonth']+5}"/>일</td>
+            		</tr>
+                <tr>
+                   <th>예상최저기온(℃)</th>
+                   <td><c:out value="${weatherList['taMin3']}"/></td>
+                   <td><c:out value="${weatherList['taMin4']}"/></td>
+                   <td><c:out value="${weatherList['taMin5']}"/></td>
+                   <td><c:out value="${weatherList['taMin6']}"/></td>
+                   <td><c:out value="${weatherList['taMin7']}"/></td>
+                </tr>
+                <tr>
+                   <th>예상최고기온(℃)</th>
+                   <td><c:out value="${weatherList['taMax3']}"/></td>
+                   <td><c:out value="${weatherList['taMax4']}"/></td>
+                   <td><c:out value="${weatherList['taMax5']}"/></td>
+                   <td><c:out value="${weatherList['taMax6']}"/></td>
+                   <td><c:out value="${weatherList['taMax7']}"/></td>
+                </tr>
+                <tr>
+                   <th>최저기온 하한범위(℃)</th>
+                   <td><c:out value="${weatherList['taMin3Low']}~${weatherList['taMin3High']}"/></td>
+                   <td><c:out value="${weatherList['taMin4Low']}~${weatherList['taMin4High']}"/></td>
+                   <td><c:out value="${weatherList['taMin5Low']}~${weatherList['taMin5High']}"/></td>
+                   <td><c:out value="${weatherList['taMin6Low']}~${weatherList['taMin6High']}"/></td>
+                   <td><c:out value="${weatherList['taMin7Low']}~${weatherList['taMin7High']}"/></td>
+                </tr>
+                <tr>
+                   <th>최고기온 하한범위(℃)</th>
+                   <td><c:out value="${weatherList['taMax3Low']}~${weatherList['taMax3High']}"/></td>
+                   <td><c:out value="${weatherList['taMax4Low']}~${weatherList['taMax4High']}"/></td>
+                   <td><c:out value="${weatherList['taMax5Low']}~${weatherList['taMax5High']}"/></td>
+                   <td><c:out value="${weatherList['taMax6Low']}~${weatherList['taMax6High']}"/></td>
+                   <td><c:out value="${weatherList['taMax7Low']}~${weatherList['taMax7High']}"/></td>
+                </tr>
+            </table>
             </section>
     </div>
 </div>
@@ -152,6 +195,7 @@
 </div>
 </body>
 	<script>
+
 		const prevButton = document.querySelector('.prev');
 		const nextButton = document.querySelector('.next');
 		const carousel = document.querySelector('.carousel');

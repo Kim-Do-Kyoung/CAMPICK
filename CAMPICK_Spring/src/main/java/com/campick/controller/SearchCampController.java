@@ -1,5 +1,7 @@
 package com.campick.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import com.campick.getimg.service.GetImgListService;
 import com.campick.getimg.service.GetImgService;
 import com.campick.searchcamp.service.CampDetailService;
 import com.campick.searchcamp.service.CampListService;
+import com.campick.tag.service.weatherAPI;
 
 @Controller
 @RequestMapping("camp")
@@ -30,6 +33,9 @@ public class SearchCampController {
 	
 	@Autowired
 	GetImgService getImgService;
+	
+	@Autowired
+	weatherAPI weather;
 	
 	@PostMapping("list")
 	public String campSearchList(@RequestParam(value="camp_name",required=false,defaultValue = "")String camp_name,
@@ -67,10 +73,13 @@ public class SearchCampController {
 	}
 	
 	@RequestMapping("detail")
-	public String campDetail(@RequestParam("camp_id")int camp_id ,Model model) throws Exception {
+	public String campDetail(@RequestParam("camp_id")int camp_id, @RequestParam String addr,Model model) throws Exception {
 		model.addAttribute("camp_id", camp_id);
 		campDetailService.execute(model);
 		getImgService.execute(model);
+		
+		Map<String, Object> weatherList = weather.execute(addr);
+		model.addAttribute("weatherList", weatherList);
 		return "campDetail";
 	}
 }

@@ -30,7 +30,7 @@
             <c:otherwise>
              <ul>
             	<li><a href="/user/logout">로그아웃</a></li>
-         	    <li><a href="myPage.jsp">마이페이지</a></li>
+         	    <li><a href="/mypage/zzimlist?id=${loginUser.id}">마이페이지</a></li>
            		<li style="color:white;"><%=loginUser.getName() %>님</li>
            	 </ul>
             </c:otherwise>
@@ -55,7 +55,9 @@
         <h1><span class=text>빅데이터</span>로 알아보는 캠핑장 PICK</h1>
        <p><span class="highlight">지금 미리 예약해야할 캠핑장은?</span><p>
     </div>
-
+    <<p style="text-align: center;">
+	<img src="/image/ready.PNG">
+	</p>
 <!--     <div id="topic">
         <div class="graph">
             <img src="image/trend.PNG">
@@ -69,7 +71,7 @@
 
         </div>
         <button type="button" onclick = "location.href = 'searchResult.jsp'">캠핑장 추천 받기</button>
-    </div> -->
+    </div> 
     <hr>
     <div id="topic">
         <div class="graph">
@@ -102,7 +104,7 @@
     
     <footer>
         
-    </footer>
+    </footer>-->
             
 </div> 
 </body>

@@ -31,8 +31,8 @@
           </c:when>
           <c:otherwise>
             <ul>
-            <li><a href="/user/logout">로그아웃</a></li>
-            <li><a href="myPage.jsp">마이페이지</a></li>
+            <li><a href="userLogout.do">로그아웃</a></li>
+            <li><a href="/mypage/zzimlist?id=${loginUser.id}">마이페이지</a></li>
             <li style="color:white;">${loginUser.name }님</li>
             </ul>
           </c:otherwise>
@@ -72,9 +72,20 @@
 	    </c:if>
         <div class="campinfo">
           <div class="campinfo_head">
-            <a href="detail?camp_id=${scDto.camp_id}">${scDto.camp_name }<span id=campFont>(${scDto.facility})</span></a>
+            <a href="detail?camp_id=${scDto.camp_id}&addr=${scDto.addr}">${scDto.camp_name }<span id=campFont>(${scDto.facility})</span></a>
               <div class="wishlist">
-                <img src="/image/wishlist.png" onclick="alert('찜 list에 추가되었습니다.')">
+              <c:choose>
+                 <c:when test="${loginUser==null}">
+        		 </c:when>
+         		 <c:otherwise>
+<%--          		 <form name="zzim">
+         		 <input type="hidden" name="camp_id" value="${scDto.camp_id}">
+         		 <button type=button onclick="javascript:zzim();">찜하기</button>
+         		 </form> --%>
+            	 <a href="javascript:zzim(${scDto.camp_id});"><img src="/image/wishlist.png" id="zzim"></a> 
+ 
+   			     </c:otherwise>
+   			  </c:choose>
               </div>
             </div>
             <div class="campinfo_contents">
@@ -155,5 +166,36 @@
 
     </footer>
     </div>
+   
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   
+ <script>   
+ function zzim(camp_id){
+	 alert(camp_id);
+ 	 $.ajax({
+		 url:"/mypage/zzim",
+		 method:"GET",
+		 dataType:"text",
+		 data:{
+			 user_id:'${loginUser.id}',
+			 camp_id: camp_id
+		 },
+		 success:
+		function(data){
+			 if(data=="ok"){
+			 alert('찜 list에 추가되었습니다.');
+			 }
+			 if(data=="fail"){
+				 alert('이미 찜한 캠핑장입니다.')
+			 }
+ 		 },
+		 error:
+			 function(){
+			 alert('에러남');
+		 }
+	 });
+    }
+    
+    </script>
+    
 </body>
 </html>

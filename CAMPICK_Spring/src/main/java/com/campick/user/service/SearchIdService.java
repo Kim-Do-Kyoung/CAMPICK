@@ -1,8 +1,8 @@
 package com.campick.user.service;
 
-import com.user.model.UserDto;
+import com.campick.user.model.UserDto;
 
 public interface SearchIdService {
 
-	public String execute(String name, String phone);
+	public UserDto execute(String name, String phone);
 }

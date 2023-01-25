@@ -246,8 +246,11 @@ a:hover{
     color: rgba(252,252,252,0.3);
 }
 
+
 footer{
     width:100%;
     height:100px;
+    position : relative;
+    transform : translateY(100%);
     background-color:#050e07;
 }

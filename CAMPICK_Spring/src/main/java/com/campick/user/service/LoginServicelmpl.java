@@ -18,8 +18,8 @@ public class LoginServicelmpl implements LoginService{
 	UserDao uDao;
 	
 	@Override
-	public UserDto execute(String loginId, String loginPw){
-		UserDto loginUser = uDao.login(loginId, loginPw);
+	public UserDto execute(String id, String pw){
+		UserDto loginUser = uDao.login(id, pw);
 		return loginUser;
 	}
 }
