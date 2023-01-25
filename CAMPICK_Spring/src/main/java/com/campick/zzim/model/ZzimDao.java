@@ -118,46 +118,12 @@ public class ZzimDao {
 	    	  
 	      }
 	
-	
-	//찜목록
-	/*
-	 * public ArrayList<SearchCampDto> getMyList(String id){
-	 * 
-	 * String sql =
-	 * "select * from camp_info where camp_id IN(select camp_id from user_zzim where id=?)"
-	 * ;
-	 * 
-	 * return (ArrayList<SearchCampDto>) jdbcTemplate.query(sql, new
-	 * RowMapper<SearchCampDto>(){
-	 * 
-	 * @Override public SearchCampDto mapRow(ResultSet rs, int rowNum) throws
-	 * SQLException { SearchCampDto zzimDto = new SearchCampDto();
-	 * zzimDto.setCamp_id(rs.getInt("camp_id"));
-	 * zzimDto.setCamp_name(rs.getString("camp_name"));
-	 * zzimDto.setLineIntro(rs.getString("lineIntro"));
-	 * zzimDto.setIntro(rs.getString("intro"));
-	 * zzimDto.setFacility(rs.getString("facility"));
-	 * zzimDto.setPlace(rs.getString("place"));
-	 * zzimDto.setDoNm(rs.getString("doNm"));
-	 * zzimDto.setSigunguNm(rs.getString("sigunguNm"));
-	 * zzimDto.setAddr(rs.getString("addr")); zzimDto.setMapX(rs.getString("mapX"));
-	 * zzimDto.setMapY(rs.getString("mapY")); zzimDto.setTel(rs.getString("tel"));
-	 * zzimDto.setHomepage(rs.getString("homepage"));
-	 * zzimDto.setSeason(rs.getString("season"));
-	 * zzimDto.setOperdate(rs.getString("operdate"));
-	 * zzimDto.setSubPlace(rs.getString("subPlace"));
-	 * zzimDto.setPlayPlace(rs.getString("playPlace"));
-	 * zzimDto.setThema(rs.getString("thema"));
-	 * zzimDto.setEqpmnlendcl(rs.getString("eqpmnlendcl"));
-	 * zzimDto.setExprnprogrm(rs.getString("exprnprogrm"));
-	 * zzimDto.setSiteBottom1(rs.getString("siteBottom1"));
-	 * zzimDto.setSiteBottom2(rs.getString("siteBottom2"));
-	 * zzimDto.setSiteBottom3(rs.getString("siteBottom3"));
-	 * zzimDto.setSiteBottom4(rs.getString("siteBottom4"));
-	 * zzimDto.setSiteBottom5(rs.getString("siteBottom5")); return zzimDto; }}, id);
-	 * 
-	 * }
-	 */
+	//찜삭제
+	public void zzimDelete(String user_id, String camp_id) {
+		String sql="DELETE FROM USER_ZZIM WHERE id=? AND camp_id=?";
+		jdbcTemplate.update(sql, user_id, camp_id);
+	}
+
 	}
 	
 

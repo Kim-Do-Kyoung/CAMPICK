@@ -89,4 +89,15 @@ public class UserDao {
 	    String sql = "select count(*) FROM USER_TB WHERE id=?";
 		return jdbcTemplate.queryForObject(sql, Integer.class, user_id);
 	}
+	
+	public void userEdit(UserDto userDto) {
+		String sql = "update user_tb set pw=?, addr=?, phone=?, email=? where id=?";
+		jdbcTemplate.update(sql, 
+				userDto.getPw(),
+				userDto.getAddr(),
+				userDto.getPhone(),
+				userDto.getEmail(),
+				userDto.getId()
+				);
+	}
 }

@@ -4,11 +4,10 @@
      
     <% 
     UserDto loginUser = (UserDto)session.getAttribute("loginUser");
-  	session.setAttribute("deletID", loginUser.getId());
     %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -24,8 +23,7 @@
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="/">CAMPICK</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+
             <!-- Navbar Search-->
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -42,12 +40,12 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">내정보</div>
-                            <a class="nav-link" href="index.html">
+                            <div class="sb-sidenav-menu-heading">my Info</div>
+                            <a class="nav-link" href="/mypage/pwReCheck?id=${loginUser.id}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                             	   내 정보 수정
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div>
+                             	   내 정보 수정
+                             	   </a>
+                            <div class="sb-sidenav-menu-heading">my Contents</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                              	   내 컨텐츠
@@ -55,38 +53,39 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">내가 쓴글 보기</a>
-                                    <a class="nav-link" href="tables.html">내 찜 list</a>
+                                    <a class="nav-link" href="/mypage/writeList?name=${loginUser.name}">내가 쓴글 보기</a>
+                                    <a class="nav-link" href="/mypage/zzimlist?id=${loginUser.id}">내 찜 list</a>
                                 </nav>
                             </div>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                       	Campick!
+                        <div class="small">campick:</div>
+                      	<a href="javascript:exit();" style="color: gray">탈퇴하기</a>
+                      	
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Tables</h1>
+                        <h1 class="mt-5">내가 찜한 목록</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Tables</li>
-                        </ol>
+                          <!--   <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li> -->
+                            <li class="breadcrumb-item active">찜한 캠핑장 한눈에 보기!</li>
+                        </ol> 
 
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                DataTable Example
-                            </div>
+                                Zzim List
+                                </div>
                             <c:forEach var ="tagDto" items="${myList}" varStatus="status">
                             <div class="card-body">
                                 <div id="pick" class="tabContent">
                                     <ol>
-                                    <button onclick="jjimRemove()" class="btn btn-dark">찜삭제</button>
-                                        <li> <h3>${tagDto.camp_name}</h3></li>
+                                    <button onclick="zzimDelete(${tagDto.camp_id})" class="btn btn-dark">찜삭제</button>
+                                        <li><a href="/tag/detail?camp_id=${tagDto.camp_id}"><h3>${tagDto.camp_name}</h3></a></li>
                                         <li><hr class="dropdown-divider" /></li>
                         
                                             <table class="table" style="table-layout: fixed">
@@ -96,7 +95,6 @@
                                                         <td class="w-50 p-3">${tagDto.addr}</td>
                                                         <th class="w-25 p-3 table-success">번호</td>
                                                         <td class="w-50 p-3">${tagDto.tel}</td>
-
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -104,6 +102,24 @@
                                 </div>
                             </div>
                             </c:forEach>
+        <div style="display: block; text-align: center;">		
+		<c:if test="${paging.startPage != 1 }">
+			<a href="/mypage/zzimlist?id=${loginUser.id}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<b>${p }</b>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<a href="/mypage/zzimlist?id=${loginUser.id}&nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.endPage != paging.lastPage}">
+			<a href="/mypage/zzimlist?id=${loginUser.id}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+		</c:if>
+	</div>
                         </div>
                     </div>
                 </main>
@@ -112,18 +128,53 @@
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; Your Website 2022</div>
                             <div>
-                                <a href="#">Privacy Policy</a>
+<!--                                 <a href="#">Privacy Policy</a>
                                 &middot;
-                                <a href="#">Terms &amp; Conditions</a>
+                                <a href="#">Terms &amp; Conditions</a> -->
                             </div>
                         </div>
                     </div>
                 </footer>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script>
+    function zzimDelete(camp_id){
+    	 $.ajax({
+   		 url:"/mypage/zzimDelete",
+   		 method:"GET",
+   		 dataType:"text",
+   		 data:{
+   			 user_id:'${loginUser.id}',
+   			 camp_id: camp_id
+   		 },
+   		 success:
+   		function(data){
+   			 if(data=="ok"){
+   			 alert('찜 목록에서 삭제되었습니다.');
+   			 location.reload(true);
+   			 }
+
+    		 },
+   		 error:
+   			 function(){
+   			 alert('에러남');
+   		 }
+   	 });
+       }
+    
+    function exit(){
+       	var result=confirm("정말로 탈퇴하시겠습니까?");
+    	if(result){
+    		location.href= "/user/unregister?id=${loginUser.id}";
+/*     		var unregister = document.unregister;
+    		unregister.method="post";
+    		unregister.action ="/user/unregister?id=${loginUser.id}"; */
+	    }
+    }
+    </script>
     </body>
 </html>

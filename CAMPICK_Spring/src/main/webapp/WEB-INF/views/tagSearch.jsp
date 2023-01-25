@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "java.util.*,com.user.model.*"%>
+    pageEncoding="UTF-8" import = "java.util.*,com.campick.user.model.*"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
      
     <%  UserDto loginUser = (UserDto)session.getAttribute("loginUser");%>
@@ -15,7 +15,7 @@
     <div id="container">
         <header>
             <div id="logo">
-                <a href="main.do">
+                <a href="/">
                     <h1>CAMPICK</h1>
                 </a>
             </div>
@@ -23,13 +23,13 @@
             <c:choose>
             <c:when test="${loginUser==null}">
             <ul>
-              <li><a href="login.jsp">로그인</a></li>
+              <li><a href="/user/login">로그인</a></li>
             </ul>
             </c:when>
             <c:otherwise>
             <ul>
-            <li><a href="userLogout.do">로그아웃</a></li>
-            <li><a href="myPage.jsp">마이페이지</a></li>
+            <li><a href="/user/logout">로그아웃</a></li>
+            <li><a href="/mypage/zzimlist?id=${loginUser.id}">마이페이지</a></li>
             <li style="color:white;"><%=loginUser.getName() %>님</li>
             </ul>
             </c:otherwise>
@@ -40,10 +40,10 @@
 
            <nav>
             <ul id="topMenu">
-                <li><a href="search.jsp">캠핑장찾기</a></li>
-                <li><a href="tagSearch.jsp">태그로 찾기</a></li>
-                <li><a href="analysis.jsp">캠핑 예측Pick</a></li>
-                <li><a href="boradList.do">커뮤니티</a></li>
+                <li><a href="/">캠핑장찾기</a></li>
+                <li><a href="/tag/search.jsp">태그로 찾기</a></li>
+                <li><a href="/pick/list">캠핑 예측Pick</a></li>
+                <li><a href="/board/list">커뮤니티</a></li>
                 </ul>
             </nav>
     </header>
@@ -52,7 +52,7 @@
 
         <h2>어떤 캠핑장을 찾으시나요?<br><br>▼</h2>
         
-        <form name="tag_search" method="post" action="tagSearch.do">
+        <form name="tag_search" method="post" action="tagSearch">
             <ul>
                 <li><input type="checkbox" name="tag" value="반려" id="dog"><label for="dog" class="labelAfterCheckBox">#반려견동반</label></li>
                 <li><input type="checkbox" name="tag" value="아이" id="kids"><label for="kids" class="labelAfterCheckBox">#아이들 놀기 좋은</label></li>

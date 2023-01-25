@@ -32,7 +32,7 @@
           <c:otherwise>
             <ul>
             <li><a href="userLogout.do">로그아웃</a></li>
-            <li><a href="/user/mypage?id=${loginUser.id}">마이페이지</a></li>
+            <li><a href="/mypage/zzimlist?id=${loginUser.id}">마이페이지</a></li>
             <li style="color:white;">${loginUser.name }님</li>
             </ul>
           </c:otherwise>
@@ -46,8 +46,8 @@
     <nav>
         <ul id="topMenu">
             <li><a href="/">캠핑장찾기</a></li>
-            <li><a href="tagSearch.jsp">태그로 찾기</a></li>
-            <li><a href="analysis.jsp">캠핑 예측Pick</a></li>
+            <li><a href="/tag/search">태그로 찾기</a></li>
+            <li><a href="/pick/list">캠핑 예측Pick</a></li>
             <li><a href="/board/list">커뮤니티</a></li>
         </ul>
     </nav>
@@ -72,7 +72,7 @@
 	    </c:if>
         <div class="campinfo">
           <div class="campinfo_head">
-            <a href="detail?camp_id=${scDto.camp_id}">${scDto.camp_name }<span id=campFont>(${scDto.facility})</span></a>
+            <a href="detail?camp_id=${scDto.camp_id}&addr=${scDto.addr}">${scDto.camp_name }<span id=campFont>(${scDto.facility})</span></a>
               <div class="wishlist">
               <c:choose>
                  <c:when test="${loginUser==null}">
@@ -172,7 +172,7 @@
  function zzim(camp_id){
 	 alert(camp_id);
  	 $.ajax({
-		 url:"/user/zzim",
+		 url:"/mypage/zzim",
 		 method:"GET",
 		 dataType:"text",
 		 data:{
@@ -193,10 +193,6 @@
 			 alert('에러남');
 		 }
 	 });
-//	const jjim = document.getElementById("jjim");
-//	jjim.addEventListener('click',function(event){
-//	document.location.href = "jjim.do?camp_name=${dto.camp_name}";
-//});
     }
     
     </script>

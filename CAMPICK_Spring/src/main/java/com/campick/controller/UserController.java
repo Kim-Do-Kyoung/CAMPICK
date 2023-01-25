@@ -2,7 +2,6 @@ package com.campick.controller;
 
 import java.io.IOException;	
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.campick.paging.PagingVO;
-import com.campick.searchcamp.model.SearchCampDto;
 import com.campick.user.model.UserDto;
 import com.campick.user.service.IDCheckService;
 import com.campick.user.service.LoginService;
@@ -25,10 +22,7 @@ import com.campick.user.service.SearchIdService;
 import com.campick.user.service.SearchPwService;
 import com.campick.user.service.UnregisterService;
 import com.campick.user.service.UserService;
-import com.campick.zzim.service.ZzimCheckService;
-import com.campick.zzim.service.ZzimListService;
-import com.campick.zzim.service.ZzimPlusService;
-import com.campick.zzim.service.ZzimTotalCnt;
+
 
 @Controller
 @RequestMapping("/user")
@@ -48,23 +42,11 @@ public class UserController {
 	
 	@Autowired
 	SearchPwService searchPwService;
-	
-	@Autowired
-	ZzimListService zzimListService;
-	
-	@Autowired
-	ZzimPlusService zzimPluService;
-	
-	@Autowired
-	ZzimCheckService zzimCheckService;
+
 	
 	@Autowired
 	IDCheckService idCheckService;
-	
-	@Autowired
-	ZzimTotalCnt zzimTotalCnt;
-	 
-	
+
 	@GetMapping("/login")
 	public String goLoginPage(Model model) {
 		System.out.println("login 진입");
@@ -104,7 +86,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/registerform")
-	public String register(Model model) {
+	public String register() {
 		return "regist";
 	}
 	
@@ -117,29 +99,7 @@ public class UserController {
 		 return "redirect:/";
 	}
 	 
-	 @GetMapping("/mypage")
-	 public String mypage(@RequestParam("id")String id, @RequestParam(value="nowPage", required=false, defaultValue = "1")String nowPage
-				, @RequestParam(value="cntPerPage", required=false, defaultValue = "2")String cntPerPage, Model model, PagingVO vo) throws Exception{
-
-		int total = zzimTotalCnt.execute(id);
-
-		//if (nowPage == null && cntPerPage == null) {
-		//	nowPage = "1";
-		//	cntPerPage = "2";
-		//} else if (nowPage == null) {
-		//	nowPage = "1";
-		//} else if (cntPerPage == null) { 
-		//	cntPerPage = "2";
-		//}
-		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		ArrayList<SearchCampDto> myList= zzimListService.execute(id, vo);
-		//model로 넘기기
-		model.addAttribute("paging", vo);
-		model.addAttribute("myList", myList);
-		return "myPage";
-	 }
-	 
-	 @PostMapping("/unregister")
+	 @GetMapping("/unregister")
 	 public String unregister(HttpSession session, @RequestParam("id")String deletID) {
 		 System.out.println("탈퇴하기");
 		 unregisterService.execute(deletID);
@@ -174,20 +134,7 @@ public class UserController {
 	 	return "searchPw";
 	}
 	 
-	 @ResponseBody
-	 @GetMapping("/zzim")
-	 public String zzim(@RequestParam("user_id") String user_id, @RequestParam("camp_id") int camp_id) throws Exception {
-		 System.out.println("왜안오니");
-		 System.out.println(user_id);
-		 System.out.println(camp_id);
-		 int count = zzimCheckService.execute(user_id, camp_id);
-		 if(count==1) {
-			return "fail"; 
-		 }else{
-			zzimPluService.execute(user_id, camp_id);
-			return "ok";
-		 }
-	 }
+
 	 
 	 @ResponseBody
 	 @GetMapping("/idCheck")

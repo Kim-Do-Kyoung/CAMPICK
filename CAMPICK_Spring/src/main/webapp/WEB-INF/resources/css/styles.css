@@ -109,6 +109,8 @@ hr {
   opacity: 0.25;
 }
 
+
+
 hr:not([size]) {
   height: 1px;
 }
@@ -11737,3 +11739,11 @@ body {
   font-size:14px;
   border-radius: 0.2rem;
 }
+a{
+	text-decoration: none;
+}
+
+a:link { color:black; }
+a:visited { color:black; }
+a:hover { color:#D1433A; }
+

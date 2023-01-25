@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>CAMPICK</title>
-	<script src="/js/register.js"></script>
+
     <link rel="stylesheet" href="/css/register.css">
  
 </head>
@@ -16,21 +16,21 @@
     <div id="container">
         <header>
             <div id="logo">
-                <a href="main.do">
+                <a href="/">
                     <h1>CAMPICK</h1>
                 </a>
             </div>
             <div id="inform">
                 <ul>
-                    <li><a href="login.jsp">로그인</a></li>
+                    <li><a href="/user/login">로그인</a></li>
                 </ul>
             </div>    
         	<nav>
            		<ul id="topMenu">
-	                <li><a href="search.html">캠핑장찾기</a></li>
-	                <li><a href="tagSearch.html">태그로 찾기</a></li>
-	                <li><a href="analysis.html">캠핑 예측Pick</a></li>
-	                <li><a href="boradList.do">커뮤니티</a></li>
+	                <li><a href="/">캠핑장찾기</a></li>
+	                <li><a href="/tag/search">태그로 찾기</a></li>
+	                <li><a href="/pcik/list">캠핑 예측Pick</a></li>
+	                <li><a href="/board/list">커뮤니티</a></li>
 				</ul>
       	  	</nav>
     	</header>
