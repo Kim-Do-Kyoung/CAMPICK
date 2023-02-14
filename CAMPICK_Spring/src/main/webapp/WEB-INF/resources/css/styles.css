@@ -11747,3 +11747,30 @@ a:link { color:black; }
 a:visited { color:black; }
 a:hover { color:#D1433A; }
 
+
+#headline{
+    width: 100%;
+    padding:60px;
+}
+
+#headline h1{
+    text-align:center;
+    font-family: 'yg-jalnan';
+}
+#headline p {
+    text-align: center;
+    font-size:20px;
+    font-family: 'S-CoreDream-3Light';
+    margin-top:15px;
+    font-weight:410px;
+
+}
+#highlight{
+    background-image: linear-gradient(135deg, #f9dd29 0%, #f7f026 100%);
+}
+
+
+#text{
+    color:#D1433A;
+}
+

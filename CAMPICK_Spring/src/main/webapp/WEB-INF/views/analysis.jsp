@@ -10,8 +10,15 @@
     <meta charset="UTF-8">
     <title>CAMPICK</title>
     <link rel="stylesheet" href="/css/analysis.css">
-
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div id="container">
         <header>
@@ -55,9 +62,135 @@
         <h1><span class=text>빅데이터</span>로 알아보는 캠핑장 PICK</h1>
        <p><span class="highlight">지금 미리 예약해야할 캠핑장은?</span><p>
     </div>
-    <<p style="text-align: center;">
-	<img src="/image/ready.PNG">
-	</p>
+               <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">언급량 분석</h1>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                             <!--   <a target="_blank" href="https://www.chartjs.org/docs/latest/">Chart.js documentation</a>-->
+                               
+                            </div>
+                        </div>
+                        <!--/////////// 날짜 선택 -->
+                        <form>
+                          시작일  <input type="date" id="start_date" name="start_date">
+                          종료일  <input type="date" id="last_date" name="last_date">
+                          <button type="button" onclick="getChart()">검색하기</button>
+                        </form>
+                        <!--/////////// 차트 시작 -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-area me-1"></i>
+                                Area Chart Example
+                            </div>
+                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
+                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                        </div>
+                        <!-- <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Bar Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
+                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-pie me-1"></i>
+                                        Pie Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
+                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </main>
+            </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+      <!--   <script src="js/scripts.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="assets/demo/chart-pie-demo.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+         <script type="text/javascript"> 
+        $(document).ready(function(){
+           getChart();
+        });
+        
+        function getChart(){
+           alert('hoho');
+           var startDate=document.getElementById("start_date").value;
+           var lastDate=document.getElementById("last_date").value;
+
+           $.ajax({
+               url:"/pick/test",
+               method:"GET",
+               dataType:"text",
+               data:{
+                  startDate:startDate,
+                  lastDate:lastDate
+               },
+               success:
+                  function(data){
+                  alert('success')
+               
+        //그래프 표현 부분
+        
+         new Chart(document.getElementById("myAreaChart"), {
+    type: 'line',
+    data: {
+			labels: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+    		datasets: [{
+    			
+    			data: [29.16540,27.67117,28.05639,33.04933,34.04378,32.86315,32.57235,35.90580,31.03037,33.05630,24.68217,21.00641],
+    		    label: "caraban",
+    		    borderColor: "#8e5ea2",
+    		    fill: false
+    		    
+    	    }, { 
+    	        data: [29.16540,27.67117,28.05639,33.04933,34.04378,32.86315,32.57235,35.90580,31.03037,33.05630,24.68217,21.00641],
+    		    label: "caraban",
+    		    borderColor: "#8e5ea2",
+    		    fill: false
+    	    }, {
+    	        data: [6.08476,6.04077,7.98461,8.41920,9.49493,8.52677,7.13072,7.99426,8.51255,7.85504,4.95108,3.75194],
+    		    label: "carbak",
+    		    borderColor: "#3cba9f",
+    		    fill: false
+    	    }, {
+    	        data: [59.13962,57.72399,60.14293,79.11483,84.88439,73.03543,75.19657,79.18324,89.70134,100.00000,73.06011,60.97776],
+    		    label: "glamping",
+    		    borderColor: "#e8c3b9",
+    		    fill: false
+    	    }]
+        }
+            ]
+    },
+    options: {
+        title: {
+        display: true,
+        text: 'World population per region (in millions)'
+        }
+    }
+    }) //chartjs 끝 
+               },
+               error:
+                  function(){
+                  alert('에러남');
+               }
+           }) //ajax 끝
+        }; //전체함수 끝
+            </script>
+<!--     <<p style="text-align: center;"> -->
+<!-- 	<img src="/image/ready.PNG"> -->
+<!-- 	</p> -->
 <!--     <div id="topic">
         <div class="graph">
             <img src="image/trend.PNG">

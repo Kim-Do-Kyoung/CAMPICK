@@ -136,6 +136,8 @@ public class BoardController {
 	public String update(BoardDto bDto,MultipartFile[] uploadFile ,Model model,HttpSession session) throws SQLException {
 		System.out.println("update post진입");
 		
+		
+		
 		final String uploadDir = "C:/Spring_camp/CAMPICK_Spring/CAMPICK_Spring/src/main/webapp/WEB-INF/resources/image";
 		String imgName = null;
 		for(MultipartFile multipartFile : uploadFile) {
